@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Logo } from "./Logo";
+import { Logo } from "@/components/Logo";
 import { loadingSteps } from "../data";
 
 export function LoadingScreen({ onDone }: { onDone: () => void }) {

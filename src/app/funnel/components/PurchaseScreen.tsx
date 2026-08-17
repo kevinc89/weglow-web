@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Logo } from "./Logo";
+import { Logo } from "@/components/Logo";
 import { plan, testimonials } from "../data";
 import { track } from "../analytics";
 import type { Answers } from "../FunnelClient";

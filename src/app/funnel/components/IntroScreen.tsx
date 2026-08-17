@@ -1,4 +1,4 @@
-import { Logo } from "./Logo";
+import { Logo } from "@/components/Logo";
 import { stat } from "../data";
 
 export function IntroScreen({ onStart }: { onStart: () => void }) {

@@ -1,25 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-
-const nohemi = localFont({
-  src: [
-    { path: "./fonts/Nohemi-Regular.otf", weight: "400", style: "normal" },
-    { path: "./fonts/Nohemi-ExtraBold.otf", weight: "700", style: "normal" },
-    { path: "./fonts/Nohemi-Black.otf", weight: "900", style: "normal" },
-  ],
-  variable: "--font-nohemi",
-  display: "swap",
-});
-
-const creato = localFont({
-  src: [
-    { path: "./fonts/CreatoDisplay-Regular.otf", weight: "400", style: "normal" },
-    { path: "./fonts/CreatoDisplay-Medium.otf", weight: "500", style: "normal" },
-    { path: "./fonts/CreatoDisplay-Bold.otf", weight: "700", style: "normal" },
-  ],
-  variable: "--font-creato",
-  display: "swap",
-});
+import { nohemi, creato } from "@/fonts";
 
 export const metadata: Metadata = {
   title: "Take the WeGlow Quiz — Get Your Personalized Fitness Plan",

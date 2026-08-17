@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "../components/Logo";
+import { Logo } from "@/components/Logo";
 import { PurchaseCompletedTracker } from "./PurchaseCompletedTracker";
 
 export default function FunnelSuccessPage() {

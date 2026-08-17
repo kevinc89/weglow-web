@@ -1,4 +1,4 @@
-import { Logo } from "./Logo";
+import { Logo } from "@/components/Logo";
 import { pillars, stat, testimonials, questions, type Choice } from "../data";
 import type { Answers } from "../FunnelClient";
 
