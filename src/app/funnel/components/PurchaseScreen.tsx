@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Logo } from "@/components/Logo";
 import { plan, testimonials } from "../data";
-import { track } from "../analytics";
+import { track } from "@/lib/analytics";
 import type { Answers } from "../FunnelClient";
 
 export function PurchaseScreen({ answers }: { answers: Answers }) {

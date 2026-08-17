@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { track } from "../analytics";
+import { track } from "@/lib/analytics";
 
 export function PurchaseCompletedTracker() {
   useEffect(() => {

@@ -8,7 +8,7 @@ import { EmailCaptureScreen } from "./components/EmailCaptureScreen";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { ResultsScreen } from "./components/ResultsScreen";
 import { PurchaseScreen } from "./components/PurchaseScreen";
-import { track } from "./analytics";
+import { track } from "@/lib/analytics";
 
 export type Answers = {
   [questionId: string]: string | string[] | undefined;

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { brand, stat } from "@/lib/brand";
 import { ScreenshotFrame } from "./ScreenshotFrame";
+import { CheckoutButton } from "./CheckoutButton";
 
 export function Hero() {
   return (
@@ -16,15 +16,10 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Link
-              href="/funnel"
-              className="rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]"
-            >
+            <CheckoutButton className="rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
               Try Now — Free Plan
-            </Link>
-            <span className="text-sm text-[#444]">
-              Take the 60-second quiz. Cancel anytime.
-            </span>
+            </CheckoutButton>
+            <span className="text-sm text-[#444]">Cancel anytime.</span>
           </div>
 
           <div className="mt-10 flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-sm w-fit">
