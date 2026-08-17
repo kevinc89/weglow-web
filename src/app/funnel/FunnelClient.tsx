@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { questions } from "./data";
 import { IntroScreen } from "./components/IntroScreen";
 import { QuestionScreen } from "./components/QuestionScreen";
@@ -8,6 +8,7 @@ import { EmailCaptureScreen } from "./components/EmailCaptureScreen";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { ResultsScreen } from "./components/ResultsScreen";
 import { PurchaseScreen } from "./components/PurchaseScreen";
+import { track } from "./analytics";
 
 export type Answers = {
   [questionId: string]: string | string[] | undefined;
@@ -25,9 +26,18 @@ type Stage =
 
 const TOTAL_STEPS = questions.length + 1; // +1 for email capture
 
+function screenNameForStage(stage: Stage): string {
+  if (stage.kind === "question") return `Question: ${questions[stage.index].id}`;
+  return stage.kind;
+}
+
 export function FunnelClient() {
   const [stage, setStage] = useState<Stage>({ kind: "intro" });
   const [answers, setAnswers] = useState<Answers>({});
+
+  useEffect(() => {
+    track("Funnel Screen Viewed", { "Screen Name": screenNameForStage(stage) });
+  }, [stage]);
 
   const goToQuestion = (index: number) => {
     if (index < 0) {
@@ -61,6 +71,10 @@ export function FunnelClient() {
         onBack={() => goToQuestion(stage.index - 1)}
         onSelectSingle={(choiceId) => {
           setAnswers((prev) => ({ ...prev, [question.id]: choiceId }));
+          track("Funnel Question Answered", {
+            "Question Id": question.id,
+            Answer: choiceId,
+          });
           goToQuestion(stage.index + 1);
         }}
         onToggleMulti={(choiceId) => {
@@ -74,7 +88,13 @@ export function FunnelClient() {
             return { ...prev, [question.id]: next };
           });
         }}
-        onContinue={() => goToQuestion(stage.index + 1)}
+        onContinue={() => {
+          track("Funnel Question Answered", {
+            "Question Id": question.id,
+            Answer: selectedArray,
+          });
+          goToQuestion(stage.index + 1);
+        }}
       />
     );
   }
@@ -86,6 +106,7 @@ export function FunnelClient() {
         onBack={() => goToQuestion(questions.length - 1)}
         onSubmit={(name, email) => {
           setAnswers((prev) => ({ ...prev, name, email }));
+          track("Funnel Email Submitted");
           setStage({ kind: "loading" });
         }}
       />

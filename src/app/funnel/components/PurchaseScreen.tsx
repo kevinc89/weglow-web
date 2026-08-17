@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Logo } from "./Logo";
 import { plan, testimonials } from "../data";
+import { track } from "../analytics";
 import type { Answers } from "../FunnelClient";
 
 export function PurchaseScreen({ answers }: { answers: Answers }) {
@@ -12,6 +13,7 @@ export function PurchaseScreen({ answers }: { answers: Answers }) {
   const handlePurchase = async () => {
     setStatus("loading");
     setErrorMessage(null);
+    track("Funnel Checkout Started", { "Plan Name": plan.name, Price: plan.price });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -20,16 +22,19 @@ export function PurchaseScreen({ answers }: { answers: Answers }) {
       });
       const data = await res.json();
       if (!res.ok || !data.url) {
+        const message =
+          data.error ?? "Checkout isn't available yet — please check back soon.";
         setStatus("error");
-        setErrorMessage(
-          data.error ?? "Checkout isn't available yet — please check back soon.",
-        );
+        setErrorMessage(message);
+        track("Funnel Checkout Error", { "Error Message": message });
         return;
       }
+      track("Funnel Checkout Redirected");
       window.location.href = data.url;
     } catch {
       setStatus("error");
       setErrorMessage("Something went wrong. Please try again.");
+      track("Funnel Checkout Error", { "Error Message": "network_error" });
     }
   };
 

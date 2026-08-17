@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Logo } from "../components/Logo";
+import { PurchaseCompletedTracker } from "./PurchaseCompletedTracker";
 
 export default function FunnelSuccessPage() {
   return (
     <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center justify-center px-6 py-16 text-center">
+      <PurchaseCompletedTracker />
       <Logo className="mb-8" />
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#db4927]/10">
         <svg width="32" height="32" viewBox="0 0 14 14" fill="none" className="text-[#db4927]">
