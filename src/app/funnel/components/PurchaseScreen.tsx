@@ -5,7 +5,7 @@ import { Logo } from "@/components/Logo";
 import { plan, testimonials } from "../data";
 import { track } from "@/lib/analytics";
 import { getAdAttribution } from "@/lib/attribution";
-import type { FunnelPricing } from "@/lib/funnelPricing";
+import type { PlanPricing } from "@/lib/planPricing";
 import type { Answers } from "../FunnelClient";
 
 function formatAmount(amount: number): string {
@@ -17,7 +17,7 @@ export function PurchaseScreen({
   pricing,
 }: {
   answers: Answers;
-  pricing: FunnelPricing | null;
+  pricing: PlanPricing | null;
 }) {
   const originalPrice = pricing ? formatAmount(pricing.originalAmount) : String(plan.compareAtPrice);
   const discountedPrice = pricing ? formatAmount(pricing.discountedAmount) : String(plan.price);

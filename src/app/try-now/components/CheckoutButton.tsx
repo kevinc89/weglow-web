@@ -20,7 +20,10 @@ export function CheckoutButton({
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ attribution: getAdAttribution() }),
+        body: JSON.stringify({
+          source: "try-now",
+          attribution: getAdAttribution(),
+        }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {

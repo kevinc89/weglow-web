@@ -9,7 +9,7 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { ResultsScreen } from "./components/ResultsScreen";
 import { PurchaseScreen } from "./components/PurchaseScreen";
 import { track } from "@/lib/analytics";
-import type { FunnelPricing } from "@/lib/funnelPricing";
+import type { PlanPricing } from "@/lib/planPricing";
 
 export type Answers = {
   [questionId: string]: string | string[] | undefined;
@@ -32,7 +32,7 @@ function screenNameForStage(stage: Stage): string {
   return stage.kind;
 }
 
-export function FunnelClient({ pricing }: { pricing: FunnelPricing | null }) {
+export function FunnelClient({ pricing }: { pricing: PlanPricing | null }) {
   const [stage, setStage] = useState<Stage>({ kind: "intro" });
   const [answers, setAnswers] = useState<Answers>({});
 

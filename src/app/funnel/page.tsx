@@ -1,7 +1,7 @@
 import { FunnelClient } from "./FunnelClient";
-import { getFunnelPricing } from "@/lib/funnelPricing";
+import { getPlanPricing } from "@/lib/planPricing";
 
 export default async function FunnelPage() {
-  const pricing = await getFunnelPricing();
+  const pricing = await getPlanPricing();
   return <FunnelClient pricing={pricing} />;
 }

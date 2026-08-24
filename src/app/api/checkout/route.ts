@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { plan } from "@/app/funnel/data";
 import { AD_ATTRIBUTION_KEYS } from "@/lib/attribution";
-import { FUNNEL_COUPON_ID, FUNNEL_PRICE_ID } from "@/lib/funnelPricing";
+import { PLAN_COUPON_ID, PLAN_PRICE_ID } from "@/lib/planPricing";
 
 export async function POST(request: NextRequest) {
   const secretKey = process.env.STRIPE_SECRET_KEY;
@@ -15,15 +14,16 @@ export async function POST(request: NextRequest) {
   }
 
   const origin = request.headers.get("origin") ?? new URL(request.url).origin;
-  const priceId = process.env.STRIPE_PRICE_ID;
   const body = await request.json().catch(() => ({}));
   const attribution = body?.attribution ?? {};
-  const isFunnel = body?.source === "funnel";
 
   const metadata: Record<string, string> = {};
   for (const key of AD_ATTRIBUTION_KEYS) {
     const value = attribution[key];
     if (typeof value === "string" && value) metadata[key] = value;
+  }
+  if (typeof body?.source === "string" && body.source) {
+    metadata.source = body.source;
   }
 
   try {
@@ -31,22 +31,8 @@ export async function POST(request: NextRequest) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
-      line_items: [
-        isFunnel
-          ? { price: FUNNEL_PRICE_ID, quantity: 1 }
-          : priceId
-            ? { price: priceId, quantity: 1 }
-            : {
-                quantity: 1,
-                price_data: {
-                  currency: "usd",
-                  unit_amount: Math.round(plan.price * 100),
-                  recurring: { interval: plan.interval },
-                  product_data: { name: plan.name },
-                },
-              },
-      ],
-      ...(isFunnel ? { discounts: [{ coupon: FUNNEL_COUPON_ID }] } : {}),
+      line_items: [{ price: PLAN_PRICE_ID, quantity: 1 }],
+      discounts: [{ coupon: PLAN_COUPON_ID }],
       success_url: `${origin}/funnel/success?utm_source=web&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/funnel?utm_source=web`,
       metadata,

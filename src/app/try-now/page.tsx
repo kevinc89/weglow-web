@@ -9,8 +9,11 @@ import { FAQ } from "./components/FAQ";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { deepDives } from "./data";
+import { getPlanPricing } from "@/lib/planPricing";
 
-export default function TryNowPage() {
+export default async function TryNowPage() {
+  const pricing = await getPlanPricing();
+
   return (
     <>
       <Nav />
@@ -21,7 +24,7 @@ export default function TryNowPage() {
       ))}
       <Trainers />
       <Testimonials />
-      <Pricing />
+      <Pricing pricing={pricing} />
       <FAQ />
       <FinalCTA />
       <Footer />
