@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
+import { AnalyticsInit } from "@/components/AnalyticsInit";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,12 +20,23 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const amplitudeApiKey = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {amplitudeApiKey ? (
+          <Script
+            src={`https://cdn.amplitude.com/script/${amplitudeApiKey}.experiment.js`}
+            strategy="beforeInteractive"
+          />
+        ) : null}
+        <AnalyticsInit />
+        {children}
+      </body>
     </html>
   );
 }

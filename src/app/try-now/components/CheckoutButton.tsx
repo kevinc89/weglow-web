@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { track } from "@/lib/analytics";
+import { getAdAttribution } from "@/lib/attribution";
 
 export function CheckoutButton({
   className,
@@ -19,7 +20,7 @@ export function CheckoutButton({
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ attribution: getAdAttribution() }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {

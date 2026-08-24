@@ -1,8 +1,32 @@
-import Link from "next/link";
+import Stripe from "stripe";
 import { Logo } from "@/components/Logo";
+import { getInboxUrl } from "@/lib/webmail";
 import { PurchaseCompletedTracker } from "./PurchaseCompletedTracker";
 
-export default function FunnelSuccessPage() {
+async function getCheckoutEmail(sessionId: string | undefined): Promise<string | null> {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!sessionId || !secretKey) return null;
+
+  try {
+    const stripe = new Stripe(secretKey);
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    return session.customer_details?.email ?? session.customer_email ?? null;
+  } catch (error) {
+    console.error("Failed to retrieve checkout session:", error);
+    return null;
+  }
+}
+
+export default async function FunnelSuccessPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { session_id: sessionId } = await searchParams;
+  const email = await getCheckoutEmail(typeof sessionId === "string" ? sessionId : undefined);
+  const inboxUrl = getInboxUrl(email);
+  const isWebLink = inboxUrl.startsWith("http");
+
   return (
     <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center justify-center px-6 py-16 text-center">
       <PurchaseCompletedTracker />
@@ -22,15 +46,17 @@ export default function FunnelSuccessPage() {
         You&apos;re in!
       </h1>
       <p className="mt-3 max-w-sm text-[#444]">
-        Welcome to WeGlow. Check your email for your personalized plan and
-        instructions to download the app.
+        Welcome to WeGlow. We just emailed{email ? ` ${email}` : " you"} a magic
+        link — tap it to activate your subscription.
       </p>
-      <Link
-        href="/"
+      <a
+        href={inboxUrl}
+        target={isWebLink ? "_blank" : undefined}
+        rel={isWebLink ? "noreferrer" : undefined}
         className="mt-8 rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] font-bold text-white shadow-lg shadow-[#db4927]/30"
       >
-        Back to WeGlow
-      </Link>
+        Activate Subscription
+      </a>
     </div>
   );
 }

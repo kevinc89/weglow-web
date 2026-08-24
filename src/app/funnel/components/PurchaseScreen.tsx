@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Logo } from "@/components/Logo";
 import { plan, testimonials } from "../data";
 import { track } from "@/lib/analytics";
+import { getAdAttribution } from "@/lib/attribution";
 import type { Answers } from "../FunnelClient";
 
 export function PurchaseScreen({ answers }: { answers: Answers }) {
@@ -18,7 +19,11 @@ export function PurchaseScreen({ answers }: { answers: Answers }) {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers }),
+        body: JSON.stringify({
+          source: "funnel",
+          answers,
+          attribution: getAdAttribution(),
+        }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {

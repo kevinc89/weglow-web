@@ -20,6 +20,10 @@ function ensureInit() {
   initialized = true;
 }
 
+export function initAnalytics() {
+  ensureInit();
+}
+
 export function track(eventName: string, properties?: Record<string, unknown>) {
   ensureInit();
   if (!initialized) return;
