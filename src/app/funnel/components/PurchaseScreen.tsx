@@ -5,16 +5,34 @@ import { Logo } from "@/components/Logo";
 import { plan, testimonials } from "../data";
 import { track } from "@/lib/analytics";
 import { getAdAttribution } from "@/lib/attribution";
+import type { FunnelPricing } from "@/lib/funnelPricing";
 import type { Answers } from "../FunnelClient";
 
-export function PurchaseScreen({ answers }: { answers: Answers }) {
+function formatAmount(amount: number): string {
+  return Number.isInteger(amount) ? String(amount) : amount.toFixed(2);
+}
+
+export function PurchaseScreen({
+  answers,
+  pricing,
+}: {
+  answers: Answers;
+  pricing: FunnelPricing | null;
+}) {
+  const originalPrice = pricing ? formatAmount(pricing.originalAmount) : String(plan.compareAtPrice);
+  const discountedPrice = pricing ? formatAmount(pricing.discountedAmount) : String(plan.price);
+  const interval = pricing?.interval ?? plan.interval;
+  const discountLabel = pricing?.discountLabel ?? "50% OFF";
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handlePurchase = async () => {
     setStatus("loading");
     setErrorMessage(null);
-    track("Funnel Checkout Started", { "Plan Name": plan.name, Price: plan.price });
+    track("Funnel Checkout Started", {
+      "Plan Name": plan.name,
+      Price: Number(discountedPrice),
+    });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -59,19 +77,24 @@ export function PurchaseScreen({ answers }: { answers: Answers }) {
             {plan.name}
           </span>
           <span className="rounded-full bg-[#db4927]/10 px-3 py-1 text-xs font-bold text-[#db4927]">
-            50% OFF
+            {discountLabel}
           </span>
         </div>
 
         <div className="mt-4 flex items-end gap-2">
           <span className="text-lg text-[#444] line-through">
-            ${plan.compareAtPrice}
+            ${originalPrice}
           </span>
           <span className="font-[var(--font-nohemi)] text-4xl font-extrabold text-[#222]">
-            ${plan.price}
+            ${discountedPrice}
           </span>
-          <span className="pb-1 text-[#444]">/ {plan.interval}</span>
+          <span className="pb-1 text-[#444]">/ {interval}</span>
         </div>
+        {pricing?.couponName ? (
+          <p className="mt-1 text-xs text-[#444]">
+            Coupon applied: {pricing.couponName}
+          </p>
+        ) : null}
 
         <ul className="mt-6 space-y-3">
           {plan.features.map((feature) => (

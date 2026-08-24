@@ -2,9 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { plan } from "@/app/funnel/data";
 import { AD_ATTRIBUTION_KEYS } from "@/lib/attribution";
-
-const FUNNEL_PRICE_ID = "price_1OXlStH2dDlVzL9w3Y6w7Cui";
-const FUNNEL_COUPON_ID = "9D9Kp4OV";
+import { FUNNEL_COUPON_ID, FUNNEL_PRICE_ID } from "@/lib/funnelPricing";
 
 export async function POST(request: NextRequest) {
   const secretKey = process.env.STRIPE_SECRET_KEY;
