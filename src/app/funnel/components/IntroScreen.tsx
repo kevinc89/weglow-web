@@ -3,7 +3,7 @@ import { stat } from "../data";
 
 export function IntroScreen({ onStart }: { onStart: () => void }) {
   return (
-    <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-16 text-center">
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-16 text-center animate-fade-in-up">
       <Logo className="mb-10" />
       <h1 className="max-w-md font-[var(--font-nohemi)] text-4xl font-extrabold leading-tight tracking-tight text-[#222] sm:text-5xl">
         The fitness app built for women

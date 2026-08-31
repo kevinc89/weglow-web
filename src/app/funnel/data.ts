@@ -1,4 +1,6 @@
-export { brand, stat, purchaseStat, resultsStat, pillars, testimonials, plan } from "@/lib/brand";
+import { brand, stat, purchaseStat, resultsStat, pillars, testimonials, plan } from "@/lib/brand";
+
+export { brand, stat, purchaseStat, resultsStat, pillars, testimonials, plan };
 
 export type Choice = {
   id: string;
@@ -40,6 +42,19 @@ export const questions: Question[] = [
     ],
   },
   {
+    id: "focus-areas",
+    kind: "multi",
+    title: "What areas do you want to focus on?",
+    subtitle: "Pick as many as you like.",
+    choices: [
+      { id: "core", label: "Core", emoji: "🎯" },
+      { id: "arms", label: "Arms", emoji: "💪" },
+      { id: "glutes", label: "Glutes", emoji: "🍑" },
+      { id: "legs", label: "Legs", emoji: "🦵" },
+      { id: "full-body", label: "Full body", emoji: "✨" },
+    ],
+  },
+  {
     id: "life-stage",
     kind: "single",
     title: "Are you currently pregnant, post-partum or perimenopause & beyond?",
@@ -49,6 +64,17 @@ export const questions: Question[] = [
       { id: "postpartum", label: "Post-partum", emoji: "🍼" },
       { id: "perimenopause", label: "Perimenopause & beyond", emoji: "🌸" },
       { id: "none", label: "None of the above" },
+    ],
+  },
+  {
+    id: "equipment",
+    kind: "single",
+    title: "Where will you be working out?",
+    choices: [
+      { id: "home", label: "Home", sublabel: "Just a few weights or bands", emoji: "🏠" },
+      { id: "gym", label: "Gym", sublabel: "Full access to equipment", emoji: "🏋️" },
+      { id: "both", label: "A mix of both", sublabel: "Home and gym", emoji: "🔀" },
+      { id: "bodyweight", label: "No equipment", sublabel: "Bodyweight only", emoji: "🤸" },
     ],
   },
   {
@@ -75,6 +101,18 @@ export const questions: Question[] = [
       { id: "4", label: "4 days / week" },
       { id: "5", label: "5 days / week" },
       { id: "6", label: "6 days / week" },
+    ],
+  },
+  {
+    id: "event",
+    kind: "single",
+    title: "Do you have an event you're working towards?",
+    subtitle: "Having something to look forward to helps you stay motivated.",
+    choices: [
+      { id: "wedding", label: "Wedding", emoji: "💍" },
+      { id: "holiday", label: "Holiday", emoji: "✈️" },
+      { id: "occasion", label: "Special occasion", emoji: "🎉" },
+      { id: "self", label: "Just for me", emoji: "🌟" },
     ],
   },
   {
@@ -105,6 +143,78 @@ export const questions: Question[] = [
   },
 ];
 
+function choiceLabel(
+  questionId: string,
+  choiceId: string | string[] | undefined,
+): string | undefined {
+  if (!choiceId || Array.isArray(choiceId)) return undefined;
+  return questions.find((q) => q.id === questionId)?.choices.find((c) => c.id === choiceId)?.label;
+}
+
+export type SocialProofSlide = {
+  id: string;
+  afterQuestionId: string;
+  emoji: string;
+  headline: string;
+  body: string;
+  cta?: string;
+  stat?: { headline: string; body: string };
+  testimonial?: { quote: string; source: string };
+  personalize?: (answers: Record<string, string | string[] | undefined>) => string | undefined;
+};
+
+export const socialProofSlides: SocialProofSlide[] = [
+  {
+    id: "proof-goal",
+    afterQuestionId: "focus-areas",
+    emoji: "🙌",
+    headline: "You're already ahead",
+    body: "Setting a clear goal puts you ahead of most people who never take this step.",
+    stat: { headline: stat.headline, body: stat.body },
+    personalize: (answers) => {
+      const label = choiceLabel("goal", answers.goal);
+      return label
+        ? `You picked "${label}" — women with that exact goal are already seeing results with WEGLOW.`
+        : undefined;
+    },
+  },
+  {
+    id: "proof-testimonial",
+    afterQuestionId: "styles",
+    emoji: "💬",
+    headline: "Real women, real results",
+    body: "Thousands of women have built strength, confidence and consistency with WEGLOW.",
+    cta: "Keep going",
+    testimonial: testimonials[1],
+  },
+  {
+    id: "proof-momentum",
+    afterQuestionId: "obstacle",
+    emoji: "🔥",
+    headline: "You've got this",
+    body: "Whatever's held you back before, WEGLOW is built to make this time stick.",
+    cta: "Almost there",
+    stat: { headline: resultsStat.headline, body: resultsStat.body },
+    personalize: (answers) => {
+      const label = choiceLabel("obstacle", answers.obstacle);
+      return label
+        ? `"${label}" stops a lot of women — but not the ones who make it this far. You're already ahead.`
+        : undefined;
+    },
+  },
+];
+
+export type FunnelStep =
+  | { kind: "question"; question: Question }
+  | { kind: "social"; slide: SocialProofSlide };
+
+export const funnelSteps: FunnelStep[] = questions.flatMap((question) => {
+  const steps: FunnelStep[] = [{ kind: "question", question }];
+  const slide = socialProofSlides.find((s) => s.afterQuestionId === question.id);
+  if (slide) steps.push({ kind: "social", slide });
+  return steps;
+});
+
 export const loadingSteps = [
   "Analyzing your goals",
   "Matching your training style",
@@ -112,4 +222,3 @@ export const loadingSteps = [
   "Building your nutrition plan",
   "Calculating your success rate",
 ];
-

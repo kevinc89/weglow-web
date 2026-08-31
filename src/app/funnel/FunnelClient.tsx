@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { questions } from "./data";
+import { funnelSteps } from "./data";
 import { IntroScreen } from "./components/IntroScreen";
 import { QuestionScreen } from "./components/QuestionScreen";
+import { SocialProofScreen } from "./components/SocialProofScreen";
 import { EmailCaptureScreen } from "./components/EmailCaptureScreen";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { ResultsScreen } from "./components/ResultsScreen";
@@ -19,16 +20,19 @@ export type Answers = {
 
 type Stage =
   | { kind: "intro" }
-  | { kind: "question"; index: number }
+  | { kind: "step"; index: number }
   | { kind: "email" }
   | { kind: "loading" }
   | { kind: "results" }
   | { kind: "purchase" };
 
-const TOTAL_STEPS = questions.length + 1; // +1 for email capture
+const TOTAL_STEPS = funnelSteps.length + 1; // +1 for email capture
 
 function screenNameForStage(stage: Stage): string {
-  if (stage.kind === "question") return `Question: ${questions[stage.index].id}`;
+  if (stage.kind === "step") {
+    const step = funnelSteps[stage.index];
+    return step.kind === "question" ? `Question: ${step.question.id}` : `Social: ${step.slide.id}`;
+  }
   return stage.kind;
 }
 
@@ -40,22 +44,38 @@ export function FunnelClient({ pricing }: { pricing: PlanPricing | null }) {
     track("Funnel Screen Viewed", { "Screen Name": screenNameForStage(stage) });
   }, [stage]);
 
-  const goToQuestion = (index: number) => {
+  const goToStep = (index: number) => {
     if (index < 0) {
       setStage({ kind: "intro" });
-    } else if (index >= questions.length) {
+    } else if (index >= funnelSteps.length) {
       setStage({ kind: "email" });
     } else {
-      setStage({ kind: "question", index });
+      setStage({ kind: "step", index });
     }
   };
 
   if (stage.kind === "intro") {
-    return <IntroScreen onStart={() => goToQuestion(0)} />;
+    return <IntroScreen onStart={() => goToStep(0)} />;
   }
 
-  if (stage.kind === "question") {
-    const question = questions[stage.index];
+  if (stage.kind === "step") {
+    const step = funnelSteps[stage.index];
+    const progress = stage.index / TOTAL_STEPS;
+
+    if (step.kind === "social") {
+      const { slide } = step;
+      const body = slide.personalize?.(answers) ?? slide.body;
+      return (
+        <SocialProofScreen
+          slide={{ ...slide, body }}
+          progress={progress}
+          onBack={() => goToStep(stage.index - 1)}
+          onContinue={() => goToStep(stage.index + 1)}
+        />
+      );
+    }
+
+    const { question } = step;
     const selected = answers[question.id];
     const selectedArray = Array.isArray(selected)
       ? selected
@@ -66,17 +86,17 @@ export function FunnelClient({ pricing }: { pricing: PlanPricing | null }) {
     return (
       <QuestionScreen
         question={question}
-        progress={stage.index / TOTAL_STEPS}
+        progress={progress}
         selected={selectedArray}
         showContinue={selectedArray.length > 0}
-        onBack={() => goToQuestion(stage.index - 1)}
+        onBack={() => goToStep(stage.index - 1)}
         onSelectSingle={(choiceId) => {
           setAnswers((prev) => ({ ...prev, [question.id]: choiceId }));
           track("Funnel Question Answered", {
             "Question Id": question.id,
             Answer: choiceId,
           });
-          goToQuestion(stage.index + 1);
+          goToStep(stage.index + 1);
         }}
         onToggleMulti={(choiceId) => {
           setAnswers((prev) => {
@@ -94,7 +114,7 @@ export function FunnelClient({ pricing }: { pricing: PlanPricing | null }) {
             "Question Id": question.id,
             Answer: selectedArray,
           });
-          goToQuestion(stage.index + 1);
+          goToStep(stage.index + 1);
         }}
       />
     );
@@ -103,8 +123,8 @@ export function FunnelClient({ pricing }: { pricing: PlanPricing | null }) {
   if (stage.kind === "email") {
     return (
       <EmailCaptureScreen
-        progress={questions.length / TOTAL_STEPS}
-        onBack={() => goToQuestion(questions.length - 1)}
+        progress={funnelSteps.length / TOTAL_STEPS}
+        onBack={() => goToStep(funnelSteps.length - 1)}
         onSubmit={(name, email) => {
           setAnswers((prev) => ({ ...prev, name, email }));
           track("Funnel Email Submitted");

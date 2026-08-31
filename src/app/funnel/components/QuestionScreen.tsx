@@ -22,7 +22,7 @@ export function QuestionScreen({
   showContinue: boolean;
 }) {
   return (
-    <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col px-6 py-8">
+    <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col px-6 py-8 animate-fade-in-up">
       <div className="flex items-center gap-4">
         <button
           type="button"

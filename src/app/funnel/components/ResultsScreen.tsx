@@ -22,12 +22,8 @@ export function ResultsScreen({
   const testimonial = testimonials[0];
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 pt-10 pb-32 text-center">
+    <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 pt-10 pb-32 text-center animate-fade-in-up">
       <Logo className="mb-6" />
-
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#db4927] to-[#dd23bb] text-2xl shadow-lg shadow-[#db4927]/30">
-        ✨
-      </div>
 
       <h2 className="mt-5 font-[var(--font-nohemi)] text-3xl font-extrabold leading-tight text-[#222]">
         Your custom <span className="text-[#db4927]">WEGLOW</span> plan is
