@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Answer a few questions and get a personalized WEGLOW workout & nutrition plan built for women.",
 };
 
-export default function FunnelLayout({ children }: LayoutProps<"/funnel">) {
+export default function FunnelLayout({ children }: LayoutProps<"/get-strong">) {
   return (
     <div
       className={`${nohemi.variable} ${creato.variable} min-h-full w-full flex-1 bg-[#fde8e5] font-[var(--font-creato)] text-[#222]`}

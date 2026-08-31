@@ -33,8 +33,8 @@ export async function POST(request: NextRequest) {
       mode: "subscription",
       line_items: [{ price: PLAN_PRICE_ID, quantity: 1 }],
       discounts: [{ coupon: PLAN_COUPON_ID }],
-      success_url: `${origin}/funnel/success?utm_source=web&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/funnel?utm_source=web`,
+      success_url: `${origin}/get-strong/success?utm_source=web&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/get-strong?utm_source=web`,
       metadata,
     });
 
