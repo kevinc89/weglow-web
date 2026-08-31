@@ -14,7 +14,7 @@ export function FinalCTA() {
             body, and your life.
           </p>
           <CheckoutButton className="mt-8 inline-block rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-            Try Now — Free Plan
+            Get My Plan
           </CheckoutButton>
         </div>
         <div className="order-1 mx-auto w-full max-w-xs overflow-hidden rounded-[2rem] shadow-2xl shadow-[#222]/20 md:order-2">

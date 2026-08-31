@@ -46,7 +46,7 @@ export function Pricing({ pricing }: { pricing: PlanPricing | null }) {
             </p>
           ) : null}
           <CheckoutButton className="mt-7 block w-full rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-            Try Now — Free Plan
+            Get My Plan
           </CheckoutButton>
           <p className="mt-3 text-center text-xs text-[#444]">
             Cancel anytime. 100% money-back guarantee within 14 days.
