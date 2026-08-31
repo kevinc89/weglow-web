@@ -3,17 +3,30 @@ import { Logo } from "@/components/Logo";
 import { getInboxUrl } from "@/lib/webmail";
 import { PurchaseCompletedTracker } from "./PurchaseCompletedTracker";
 
-async function getCheckoutEmail(sessionId: string | undefined): Promise<string | null> {
+type CheckoutSessionDetails = {
+  email: string | null;
+  value: number | null;
+  currency: string | null;
+};
+
+async function getCheckoutSessionDetails(
+  sessionId: string | undefined,
+): Promise<CheckoutSessionDetails> {
+  const empty: CheckoutSessionDetails = { email: null, value: null, currency: null };
   const secretKey = process.env.STRIPE_SECRET_KEY;
-  if (!sessionId || !secretKey) return null;
+  if (!sessionId || !secretKey) return empty;
 
   try {
     const stripe = new Stripe(secretKey);
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    return session.customer_details?.email ?? session.customer_email ?? null;
+    return {
+      email: session.customer_details?.email ?? session.customer_email ?? null,
+      value: session.amount_total != null ? session.amount_total / 100 : null,
+      currency: session.currency,
+    };
   } catch (error) {
     console.error("Failed to retrieve checkout session:", error);
-    return null;
+    return empty;
   }
 }
 
@@ -23,13 +36,15 @@ export default async function FunnelSuccessPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { session_id: sessionId } = await searchParams;
-  const email = await getCheckoutEmail(typeof sessionId === "string" ? sessionId : undefined);
+  const { email, value, currency } = await getCheckoutSessionDetails(
+    typeof sessionId === "string" ? sessionId : undefined,
+  );
   const inboxUrl = getInboxUrl(email);
   const isWebLink = inboxUrl.startsWith("http");
 
   return (
     <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center justify-center px-6 py-16 text-center">
-      <PurchaseCompletedTracker />
+      <PurchaseCompletedTracker value={value} currency={currency} />
       <Logo className="mb-8" />
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#db4927]/10">
         <svg width="32" height="32" viewBox="0 0 14 14" fill="none" className="text-[#db4927]">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { track } from "@/lib/analytics";
 import { getAdAttribution } from "@/lib/attribution";
+import { trackPixel } from "@/lib/metaPixel";
 
 export function CheckoutButton({
   className,
@@ -16,6 +17,7 @@ export function CheckoutButton({
   const handleClick = async () => {
     setStatus("loading");
     track("Try Now Checkout Started");
+    trackPixel("InitiateCheckout");
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",

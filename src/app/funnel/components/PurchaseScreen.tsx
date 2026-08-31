@@ -5,6 +5,7 @@ import { Logo } from "@/components/Logo";
 import { plan, testimonials } from "../data";
 import { track } from "@/lib/analytics";
 import { getAdAttribution } from "@/lib/attribution";
+import { trackPixel } from "@/lib/metaPixel";
 import type { PlanPricing } from "@/lib/planPricing";
 import type { Answers } from "../FunnelClient";
 
@@ -32,6 +33,10 @@ export function PurchaseScreen({
     track("Funnel Checkout Started", {
       "Plan Name": plan.name,
       Price: Number(discountedPrice),
+    });
+    trackPixel("InitiateCheckout", {
+      value: Number(discountedPrice),
+      currency: (pricing?.currency ?? "usd").toUpperCase(),
     });
     try {
       const res = await fetch("/api/checkout", {
