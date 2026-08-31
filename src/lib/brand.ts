@@ -33,18 +33,22 @@ export const pillars = [
   {
     title: "Education",
     body: "Understand the why behind every workout and meal.",
+    emoji: "📚",
   },
   {
     title: "Community-led innovation",
     body: "Built with real women, for every goal and ability.",
+    emoji: "🤝",
   },
   {
     title: "Positivity",
     body: "Wellness that energizes you — never shames you.",
+    emoji: "✨",
   },
   {
     title: "Inclusivity & accessibility",
     body: "Fitness for everyone, anywhere, anytime.",
+    emoji: "🌈",
   },
 ];
 
