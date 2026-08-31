@@ -1,4 +1,14 @@
-import { brand, stat, purchaseStat, resultsStat, pillars, testimonials, plan } from "@/lib/brand";
+import {
+  brand,
+  stat,
+  purchaseStat,
+  resultsStat,
+  pressMentions,
+  founderQuote,
+  pillars,
+  testimonials,
+  plan,
+} from "@/lib/brand";
 
 export { brand, stat, purchaseStat, resultsStat, pillars, testimonials, plan };
 
@@ -159,7 +169,8 @@ export type SocialProofSlide = {
   body: string;
   cta?: string;
   stat?: { headline: string; body: string };
-  testimonial?: { quote: string; source: string };
+  testimonial?: { quote: string; source: string; showRating?: boolean };
+  press?: { label: string; outlets: string[] };
   personalize?: (answers: Record<string, string | string[] | undefined>) => string | undefined;
 };
 
@@ -170,7 +181,7 @@ export const socialProofSlides: SocialProofSlide[] = [
     emoji: "🙌",
     headline: "You're already ahead",
     body: "Setting a clear goal puts you ahead of most people who never take this step.",
-    stat: { headline: stat.headline, body: stat.body },
+    press: { label: pressMentions.headline, outlets: pressMentions.body.split(" & ") },
     personalize: (answers) => {
       const label = choiceLabel("goal", answers.goal);
       return label
@@ -185,7 +196,7 @@ export const socialProofSlides: SocialProofSlide[] = [
     headline: "Real women, real results",
     body: "Thousands of women have built strength, confidence and consistency with WEGLOW.",
     cta: "Keep going",
-    testimonial: testimonials[1],
+    testimonial: testimonials[3],
   },
   {
     id: "proof-momentum",
@@ -194,7 +205,7 @@ export const socialProofSlides: SocialProofSlide[] = [
     headline: "You've got this",
     body: "Whatever's held you back before, WEGLOW is built to make this time stick.",
     cta: "Almost there",
-    stat: { headline: resultsStat.headline, body: resultsStat.body },
+    testimonial: { ...founderQuote, showRating: false },
     personalize: (answers) => {
       const label = choiceLabel("obstacle", answers.obstacle);
       return label

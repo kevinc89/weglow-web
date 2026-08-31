@@ -54,9 +54,22 @@ export function SocialProofScreen({
           </div>
         ) : null}
 
+        {slide.press ? (
+          <div className="mt-6 rounded-2xl bg-white px-6 py-4 shadow-sm">
+            <p className="text-xs font-bold tracking-wide text-[#db4927] uppercase">
+              {slide.press.label}
+            </p>
+            <p className="mt-1 font-[var(--font-nohemi)] text-base font-bold text-[#222]">
+              {slide.press.outlets.join(" · ")}
+            </p>
+          </div>
+        ) : null}
+
         {slide.testimonial ? (
           <div className="mt-6 w-full rounded-2xl bg-white p-6 text-left shadow-sm">
-            <p className="text-sm tracking-wide text-[#db4927]">★★★★★</p>
+            {slide.testimonial.showRating === false ? null : (
+              <p className="text-sm tracking-wide text-[#db4927]">★★★★★</p>
+            )}
             <p className="mt-2 text-[#222]">
               &ldquo;{slide.testimonial.quote}&rdquo;
             </p>

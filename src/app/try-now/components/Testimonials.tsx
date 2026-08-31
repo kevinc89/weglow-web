@@ -1,4 +1,4 @@
-import { testimonials, stat } from "@/lib/brand";
+import { testimonials, resultsStat } from "@/lib/brand";
 
 export function Testimonials() {
   return (
@@ -8,7 +8,7 @@ export function Testimonials() {
           Loved by thousands of women
         </h2>
         <p className="mt-3 text-lg text-[#444]">
-          {stat.headline} {stat.body}
+          {resultsStat.headline} {resultsStat.body}
         </p>
       </div>
 

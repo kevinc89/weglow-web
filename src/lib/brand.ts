@@ -25,8 +25,19 @@ export const purchaseStat = {
 };
 
 export const resultsStat = {
-  headline: "50k+",
-  body: "workouts completed by WEGLOW members",
+  headline: "300k+",
+  body: "members trust WEGLOW worldwide",
+};
+
+export const pressMentions = {
+  headline: "As featured in",
+  body: "Marie Claire & Women's Health",
+};
+
+export const founderQuote = {
+  quote:
+    "I want every woman to feel empowered, educated and positive about their journey with their body.",
+  source: "Stef Williams, WEGLOW Founder",
 };
 
 export const pillars = [
