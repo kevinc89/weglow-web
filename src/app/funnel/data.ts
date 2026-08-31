@@ -1,4 +1,4 @@
-export { brand, stat, purchaseStat, pillars, testimonials, plan } from "@/lib/brand";
+export { brand, stat, purchaseStat, resultsStat, pillars, testimonials, plan } from "@/lib/brand";
 
 export type Choice = {
   id: string;
@@ -42,11 +42,11 @@ export const questions: Question[] = [
   {
     id: "life-stage",
     kind: "single",
-    title: "Are you Currently Pregnant, Post-Partum or Perimenopause & beyond?",
+    title: "Are you currently pregnant, post-partum or perimenopause & beyond?",
     subtitle: "WEGLOW adapts your training to your hormonal phase and life stage.",
     choices: [
       { id: "pregnant", label: "Pregnant", emoji: "🤰" },
-      { id: "postpartum", label: "Post-Partum", emoji: "🍼" },
+      { id: "postpartum", label: "Post-partum", emoji: "🍼" },
       { id: "perimenopause", label: "Perimenopause & beyond", emoji: "🌸" },
       { id: "none", label: "None of the above" },
     ],
@@ -54,10 +54,10 @@ export const questions: Question[] = [
   {
     id: "styles",
     kind: "multi",
-    title: "What is your Favourite Style of Training?",
+    title: "What is your favourite style of training?",
     subtitle: "Pick as many as you like.",
     choices: [
-      { id: "strength", label: "Strength Training", emoji: "🏋️‍♀️" },
+      { id: "strength", label: "Strength training", emoji: "🏋️‍♀️" },
       { id: "pilates", label: "Pilates", emoji: "🩰" },
       { id: "yoga", label: "Yoga", emoji: "🧘‍♀️" },
       { id: "barre", label: "Barre", emoji: "🩱" },

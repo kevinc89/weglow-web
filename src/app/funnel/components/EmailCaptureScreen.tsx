@@ -74,7 +74,7 @@ export function EmailCaptureScreen({
           disabled={!canSubmit}
           className="mt-8 w-full rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Build My Plan
+          Build my plan
         </button>
       </form>
     </div>

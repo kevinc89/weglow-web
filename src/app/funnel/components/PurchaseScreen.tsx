@@ -67,10 +67,10 @@ export function PurchaseScreen({
   };
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 py-16 text-center">
-      <Logo className="mb-8" />
+    <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 pt-10 pb-32 text-center">
+      <Logo className="mb-6" />
       <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold leading-tight text-[#222]">
-        Your Personalised Plan Is Ready
+        Your personalised plan is ready
       </h2>
       <p className="mt-3 text-[#444]">
         Unlock your workouts, nutrition and recommendations - all built
@@ -111,6 +111,10 @@ export function PurchaseScreen({
           </p>
         ) : null}
 
+        <p className="mt-4 text-xs text-[#444]">
+          Cancel anytime. 100% money-back guarantee within 14 days.
+        </p>
+
         <ul className="mt-6 space-y-3">
           {plan.features.map((feature) => (
             <li key={feature} className="flex items-start gap-2 text-sm text-[#222]">
@@ -133,23 +137,6 @@ export function PurchaseScreen({
             </li>
           ))}
         </ul>
-
-        <button
-          type="button"
-          onClick={handlePurchase}
-          disabled={status === "loading"}
-          className="mt-7 w-full rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
-        >
-          {status === "loading" ? "Redirecting..." : "Get My Plan"}
-        </button>
-
-        {status === "error" ? (
-          <p className="mt-3 text-sm text-[#db4927]">{errorMessage}</p>
-        ) : null}
-
-        <p className="mt-3 text-center text-xs text-[#444]">
-          Cancel anytime. 100% money-back guarantee within 14 days.
-        </p>
       </div>
 
       <div className="mt-8 w-full space-y-3 text-left">
@@ -159,6 +146,33 @@ export function PurchaseScreen({
             <p className="mt-1 text-xs text-[#444]">— {t.source}</p>
           </div>
         ))}
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-[#222]/10 bg-white/95 px-6 py-4 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-lg items-center gap-4">
+          <div className="flex-1 text-left">
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm text-[#444] line-through">
+                ${originalPrice}
+              </span>
+              <span className="font-[var(--font-nohemi)] text-xl font-extrabold text-[#222]">
+                ${discountedPrice}
+              </span>
+              <span className="text-xs text-[#444]">/ {interval}</span>
+            </div>
+            {status === "error" ? (
+              <p className="mt-1 text-xs text-[#db4927]">{errorMessage}</p>
+            ) : null}
+          </div>
+          <button
+            type="button"
+            onClick={handlePurchase}
+            disabled={status === "loading"}
+            className="shrink-0 rounded-full bg-[#db4927] px-6 py-3 font-[var(--font-nohemi)] text-base font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+          >
+            {status === "loading" ? "Redirecting..." : "Get my plan"}
+          </button>
+        </div>
       </div>
     </div>
   );

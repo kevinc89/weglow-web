@@ -1,5 +1,5 @@
 import { Logo } from "@/components/Logo";
-import { pillars, stat, testimonials, questions, type Choice } from "../data";
+import { pillars, resultsStat, testimonials, questions, type Choice } from "../data";
 import type { Answers } from "../FunnelClient";
 
 function findChoiceLabel(questionId: string, choiceId: string | undefined): string | undefined {
@@ -25,7 +25,7 @@ export function ResultsScreen({
     <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 py-16 text-center">
       <Logo className="mb-8" />
       <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold leading-tight text-[#222]">
-        Your Custom WEGLOW Plan is Ready
+        Your custom WEGLOW plan is ready
       </h2>
       <p className="mt-3 text-[#444]">
         Based on your answers, here&apos;s what we&apos;ve built for you.
@@ -54,10 +54,10 @@ export function ResultsScreen({
 
       <div className="mt-6 flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-sm">
         <span className="font-[var(--font-nohemi)] text-2xl font-extrabold text-[#db4927]">
-          {stat.headline}
+          {resultsStat.headline}
         </span>
         <span className="max-w-[10rem] text-left text-sm text-[#444]">
-          {stat.body}
+          {resultsStat.body}
         </span>
       </div>
 
@@ -82,7 +82,7 @@ export function ResultsScreen({
         onClick={onContinue}
         className="mt-10 w-full max-w-xs rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]"
       >
-        See My Plan & Pricing
+        See my plan & pricing
       </button>
     </div>
   );

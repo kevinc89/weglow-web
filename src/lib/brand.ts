@@ -24,13 +24,18 @@ export const purchaseStat = {
   body: "average rating from women on the App Store",
 };
 
+export const resultsStat = {
+  headline: "50k+",
+  body: "workouts completed by WEGLOW members",
+};
+
 export const pillars = [
   {
     title: "Education",
     body: "Understand the why behind every workout and meal.",
   },
   {
-    title: "Community-Led Innovation",
+    title: "Community-led innovation",
     body: "Built with real women, for every goal and ability.",
   },
   {
@@ -38,7 +43,7 @@ export const pillars = [
     body: "Wellness that energizes you — never shames you.",
   },
   {
-    title: "Inclusivity & Accessibility",
+    title: "Inclusivity & accessibility",
     body: "Fitness for everyone, anywhere, anytime.",
   },
 ];

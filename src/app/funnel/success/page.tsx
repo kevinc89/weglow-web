@@ -70,7 +70,7 @@ export default async function FunnelSuccessPage({
         rel={isWebLink ? "noreferrer" : undefined}
         className="mt-8 rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] font-bold text-white shadow-lg shadow-[#db4927]/30"
       >
-        Activate Subscription
+        Activate subscription
       </a>
     </div>
   );
