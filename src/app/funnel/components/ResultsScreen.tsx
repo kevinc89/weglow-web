@@ -25,7 +25,7 @@ export function ResultsScreen({
     <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 py-16 text-center">
       <Logo className="mb-8" />
       <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold leading-tight text-[#222]">
-        Your Custom WeGlow Plan is Ready
+        Your Custom WEGLOW Plan is Ready
       </h2>
       <p className="mt-3 text-[#444]">
         Based on your answers, here&apos;s what we&apos;ve built for you.

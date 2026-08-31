@@ -61,7 +61,7 @@ export default async function FunnelSuccessPage({
         You&apos;re in!
       </h1>
       <p className="mt-3 max-w-sm text-[#444]">
-        Welcome to WeGlow. We just emailed{email ? ` ${email}` : " you"} a magic
+        Welcome to WEGLOW. We just emailed{email ? ` ${email}` : " you"} a magic
         link — tap it to activate your subscription.
       </p>
       <a

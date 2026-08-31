@@ -1,4 +1,4 @@
-export { brand, stat, pillars, testimonials, plan } from "@/lib/brand";
+export { brand, stat, purchaseStat, pillars, testimonials, plan } from "@/lib/brand";
 
 export type Choice = {
   id: string;
@@ -19,7 +19,7 @@ export const questions: Question[] = [
   {
     id: "goal",
     kind: "single",
-    title: "What's your main goal right now?",
+    title: "If you could achieve one thing, what would it be?",
     subtitle: "We'll tailor your plan around this.",
     choices: [
       { id: "lose-weight", label: "Lose weight & tone up", emoji: "🔥" },
@@ -42,19 +42,19 @@ export const questions: Question[] = [
   {
     id: "life-stage",
     kind: "single",
-    title: "Which best describes you right now?",
-    subtitle: "WeGlow adapts your training to your hormonal phase and life stage.",
+    title: "Are you Currently Pregnant, Post-Partum or Perimenopause & beyond?",
+    subtitle: "WEGLOW adapts your training to your hormonal phase and life stage.",
     choices: [
-      { id: "general", label: "General fitness", emoji: "🌱" },
-      { id: "prenatal", label: "Pregnant (prenatal)", emoji: "🤰" },
-      { id: "postpartum", label: "Postpartum recovery", emoji: "🍼" },
+      { id: "pregnant", label: "Pregnant", emoji: "🤰" },
+      { id: "postpartum", label: "Post-Partum", emoji: "🍼" },
       { id: "perimenopause", label: "Perimenopause & beyond", emoji: "🌸" },
+      { id: "none", label: "None of the above" },
     ],
   },
   {
     id: "styles",
     kind: "multi",
-    title: "Which training styles interest you?",
+    title: "What is your Favourite Style of Training?",
     subtitle: "Pick as many as you like.",
     choices: [
       { id: "strength", label: "Strength Training", emoji: "🏋️‍♀️" },
@@ -62,13 +62,14 @@ export const questions: Question[] = [
       { id: "yoga", label: "Yoga", emoji: "🧘‍♀️" },
       { id: "barre", label: "Barre", emoji: "🩱" },
       { id: "cardio", label: "Cardio", emoji: "🏃‍♀️" },
+      { id: "hybrid", label: "Hybrid", emoji: "🔀" },
       { id: "meditation", label: "Meditation", emoji: "🕯️" },
     ],
   },
   {
     id: "days",
     kind: "single",
-    title: "How many days a week can you commit?",
+    title: "How many days a week can you commit to?",
     choices: [
       { id: "3", label: "3 days / week" },
       { id: "4", label: "4 days / week" },
@@ -96,6 +97,7 @@ export const questions: Question[] = [
     choices: [
       { id: "none", label: "No restrictions" },
       { id: "vegetarian", label: "Vegetarian" },
+      { id: "pescatarian", label: "Pescatarian" },
       { id: "vegan", label: "Vegan" },
       { id: "gluten-free", label: "Gluten-free" },
       { id: "dairy-free", label: "Dairy-free" },

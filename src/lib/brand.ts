@@ -19,6 +19,11 @@ export const stat = {
   body: "of women see results within 8 weeks",
 };
 
+export const purchaseStat = {
+  headline: "4.8★",
+  body: "average rating from women on the App Store",
+};
+
 export const pillars = [
   {
     title: "Education",
@@ -67,7 +72,7 @@ export const plan = {
   interval: "year" as const,
   features: [
     "Personalized workout plans (strength, pilates, cardio, yoga, barre & more)",
-    "Cycle-synced training that adapts to your hormonal phase",
+    "Training that adapts to your menstrual cycle & hormones",
     "Dietician-approved recipes & meal planning",
     "On-demand classes from 6 specialized trainers",
     "Progress tracking, badges & weekly stats",

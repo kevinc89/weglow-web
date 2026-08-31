@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Logo } from "@/components/Logo";
-import { plan, testimonials } from "../data";
+import { plan, purchaseStat, testimonials } from "../data";
 import { track } from "@/lib/analytics";
 import { getAdAttribution } from "@/lib/attribution";
 import { trackPixel } from "@/lib/metaPixel";
@@ -70,16 +70,26 @@ export function PurchaseScreen({
     <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center px-6 py-16 text-center">
       <Logo className="mb-8" />
       <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold leading-tight text-[#222]">
-        Start Your WeGlow Journey
+        Your Personalised Plan Is Ready
       </h2>
       <p className="mt-3 text-[#444]">
-        Lock in your discounted annual plan today.
+        Unlock your workouts, nutrition and recommendations - all built
+        around you.
       </p>
+
+      <div className="mt-6 flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-sm">
+        <span className="font-[var(--font-nohemi)] text-2xl font-extrabold text-[#db4927]">
+          {purchaseStat.headline}
+        </span>
+        <span className="max-w-[10rem] text-left text-sm text-[#444]">
+          {purchaseStat.body}
+        </span>
+      </div>
 
       <div className="mt-8 w-full rounded-3xl border-2 border-[#db4927] bg-white p-7 text-left shadow-lg">
         <div className="flex items-center justify-between">
           <span className="font-[var(--font-nohemi)] text-lg font-bold text-[#222]">
-            {plan.name}
+            {plan.name.toUpperCase()}
           </span>
           <span className="rounded-full bg-[#db4927]/10 px-3 py-1 text-xs font-bold text-[#db4927]">
             {discountLabel}

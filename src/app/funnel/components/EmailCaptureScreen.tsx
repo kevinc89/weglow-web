@@ -49,7 +49,7 @@ export function EmailCaptureScreen({
           Where should we send your custom plan?
         </h2>
         <p className="mt-2 text-[#444]">
-          We&apos;ll email your personalized WeGlow plan here.
+          We&apos;ll email your personalized WEGLOW plan here.
         </p>
 
         <div className="mt-8 space-y-3">

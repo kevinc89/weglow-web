@@ -3,9 +3,9 @@ import { nohemi, creato } from "@/fonts";
 import { MetaPixel } from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
-  title: "Take the WeGlow Quiz — Get Your Personalized Fitness Plan",
+  title: "Take the WEGLOW Quiz — Get Your Personalized Fitness Plan",
   description:
-    "Answer a few questions and get a personalized WeGlow workout & nutrition plan built for women.",
+    "Answer a few questions and get a personalized WEGLOW workout & nutrition plan built for women.",
 };
 
 export default function FunnelLayout({ children }: LayoutProps<"/funnel">) {

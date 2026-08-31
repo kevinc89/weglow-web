@@ -9,8 +9,8 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
         The fitness app built for women
       </h1>
       <p className="mt-4 max-w-sm text-lg text-[#444]">
-        Take our 60-second quiz to get a personalized workout &amp; nutrition
-        plan — synced to your body, your goals, and your life.
+        Your body is unique. Your plan should be too. Take our 60 second quiz
+        and get a personalised workout and nutrition plan built for you.
       </p>
 
       <button
@@ -18,7 +18,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
         onClick={onStart}
         className="mt-10 w-full max-w-xs rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]"
       >
-        Start My Plan
+        Build My Plan
       </button>
 
       <div className="mt-8 flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-sm">
