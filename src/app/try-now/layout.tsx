@@ -5,7 +5,7 @@ import { MetaPixel } from "@/components/MetaPixel";
 export const metadata: Metadata = {
   title: "WeGlow — The Fitness App Built for Women",
   description:
-    "Personalized workouts, nutrition, and coaching that adapt to your body. Get your WeGlow plan today.",
+    "Personalized workouts, nutrition, and coaching that adapt to your body. Get started with WeGlow today.",
 };
 
 export default function TryNowLayout({ children }: LayoutProps<"/try-now">) {

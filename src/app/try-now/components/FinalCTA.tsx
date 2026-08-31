@@ -10,11 +10,11 @@ export function FinalCTA() {
             Stop guessing. Start glowing.
           </h2>
           <p className="mt-4 max-w-md text-lg text-[#444]">
-            Get a personalized WeGlow plan built around your goals, your
-            body, and your life.
+            Get personalized workouts and nutrition built around your goals,
+            your body, and your life.
           </p>
           <CheckoutButton className="mt-8 inline-block rounded-full bg-[#db4927] px-8 py-4 font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-            Get My Plan
+            Get Started
           </CheckoutButton>
         </div>
         <div className="order-1 mx-auto w-full max-w-xs overflow-hidden rounded-[2rem] shadow-2xl shadow-[#222]/20 md:order-2">

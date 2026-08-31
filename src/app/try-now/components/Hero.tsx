@@ -17,7 +17,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CheckoutButton className="rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-              Get My Plan
+              Get Started
             </CheckoutButton>
             <span className="text-sm text-[#444]">Cancel anytime.</span>
           </div>

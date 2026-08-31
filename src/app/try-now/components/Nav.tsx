@@ -8,7 +8,7 @@ export function Nav() {
         <Logo />
         <div>
           <CheckoutButton className="rounded-full bg-[#db4927] px-5 py-2.5 font-[var(--font-nohemi)] text-sm font-bold text-white transition-transform hover:scale-[1.03]">
-            Get My Plan
+            Get Started
           </CheckoutButton>
         </div>
       </div>
