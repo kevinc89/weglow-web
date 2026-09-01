@@ -112,7 +112,7 @@ export function PurchaseScreen({
         ) : null}
 
         <p className="mt-4 text-xs text-[#444]">
-          Cancel anytime. 100% money-back guarantee within 14 days.
+          Cancel anytime. 100% money-back guarantee within 30 days.
         </p>
 
         <ul className="mt-6 space-y-3">

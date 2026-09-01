@@ -36,7 +36,7 @@ export function Hero() {
           <div className="absolute -inset-8 -z-10 rounded-full bg-white/60 blur-3xl" />
           <ScreenshotFrame
             src="/try-now/screenshots/home.png"
-            alt="WeGlow home screen showing today's workout"
+            alt="WEGLOW home screen showing today's workout"
             priority
           />
         </div>

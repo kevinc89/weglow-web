@@ -3,9 +3,9 @@ import { nohemi, creato } from "@/fonts";
 import { MetaPixel } from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
-  title: "WeGlow — The Fitness App Built for Women",
+  title: "WEGLOW — The Fitness App Built for Women",
   description:
-    "Personalized workouts, nutrition, and coaching that adapt to your body. Get started with WeGlow today.",
+    "Personalized workouts, nutrition, and coaching that adapt to your body. Get started with WEGLOW today.",
 };
 
 export default function TryNowLayout({ children }: LayoutProps<"/try-now">) {

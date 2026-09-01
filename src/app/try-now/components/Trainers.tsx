@@ -20,7 +20,7 @@ export function Trainers() {
               <div className="mx-auto aspect-[3/4] w-full max-w-[220px] overflow-hidden rounded-3xl shadow-lg">
                 <Image
                   src={trainer.image}
-                  alt={`${trainer.name}, WeGlow trainer`}
+                  alt={`${trainer.name}, WEGLOW trainer`}
                   width={600}
                   height={800}
                   className="h-full w-full object-cover"

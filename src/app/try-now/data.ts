@@ -37,19 +37,19 @@ export const deepDives: DeepDive[] = [
       "Step-by-step video demos for every move",
     ],
     image: "/try-now/screenshots/workout-overview.png",
-    imageAlt: "WeGlow workout overview screen showing supersets and exercises",
+    imageAlt: "WEGLOW workout overview screen showing supersets and exercises",
   },
   {
     eyebrow: "Cycle Sync",
     title: "Trained with your body, not against it",
-    body: "WeGlow adjusts your training to your hormonal phase — whether that's a regular cycle, pregnancy, postpartum recovery, or perimenopause. No more guessing why some weeks feel harder.",
+    body: "WEGLOW adjusts your training to your hormonal phase — whether that's a regular cycle, pregnancy, postpartum recovery, or perimenopause. No more guessing why some weeks feel harder.",
     bullets: [
       "Workouts adapt to your cycle phase",
       "Prenatal & postpartum-safe programming",
       "Built with real women, for every life stage",
     ],
     image: "/try-now/photos/kneeling-stretch.jpg",
-    imageAlt: "Woman kneeling on a WeGlow yoga mat next to resistance rollers",
+    imageAlt: "Woman kneeling on a WEGLOW yoga mat next to resistance rollers",
     reverse: true,
   },
   {
@@ -62,7 +62,7 @@ export const deepDives: DeepDive[] = [
       "Smart meal plans that adjust to you",
     ],
     image: "/try-now/screenshots/nutrition.png",
-    imageAlt: "WeGlow meal plan screen showing macros and recipe swaps",
+    imageAlt: "WEGLOW meal plan screen showing macros and recipe swaps",
   },
   {
     eyebrow: "Community",
@@ -74,7 +74,7 @@ export const deepDives: DeepDive[] = [
       "A community that celebrates you",
     ],
     image: "/try-now/screenshots/challenge.png",
-    imageAlt: "WeGlow January Challenge enrollment screen",
+    imageAlt: "WEGLOW January Challenge enrollment screen",
     reverse: true,
   },
 ];
@@ -86,20 +86,20 @@ export const trainers = [
     image: "/try-now/photos/gym-barbell.jpg",
   },
   {
-    name: "Colby",
-    focus: "Pilates & Mobility",
-    image: "/try-now/photos/exercise-ball.jpg",
+    name: "Mara",
+    focus: "Yoga & Mobility",
+    image: "/try-now/photos/mara-yoga.jpg",
   },
   {
-    name: "Krsna",
+    name: "Colby",
     focus: "Cardio & Conditioning",
-    image: "/try-now/photos/side-plank.jpg",
+    image: "/try-now/photos/colby-cardio.jpg",
   },
 ];
 
 export const faqs = [
   {
-    question: "Is WeGlow good for beginners?",
+    question: "Is WEGLOW good for beginners?",
     answer:
       "Yes — every program is available at Beginner, Intermediate, and Advanced levels, and workouts include step-by-step video demos for every move.",
   },
@@ -109,9 +109,9 @@ export const faqs = [
       "No. Most programs work with minimal or no equipment, and you can filter workouts by what you have at home or at the gym.",
   },
   {
-    question: "Does WeGlow work around my cycle, pregnancy, or postpartum recovery?",
+    question: "Does WEGLOW work around my cycle, pregnancy, or postpartum recovery?",
     answer:
-      "Yes. WeGlow adapts your training to your hormonal phase and life stage, with dedicated prenatal and postpartum-safe programming.",
+      "Yes. WEGLOW adapts your training to your hormonal phase and life stage, with dedicated prenatal and postpartum-safe programming.",
   },
   {
     question: "What's included in the nutrition plan?",
@@ -125,6 +125,6 @@ export const faqs = [
   {
     question: "Can I cancel anytime?",
     answer:
-      "Yes, cancel anytime from your account settings — no phone calls, no hassle. We also offer a 14-day money-back guarantee.",
+      "Yes, cancel anytime from your account settings — no phone calls, no hassle. We also offer a 30-day money-back guarantee.",
   },
 ];

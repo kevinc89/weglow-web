@@ -25,7 +25,7 @@ export function Pricing({ pricing }: { pricing: PlanPricing | null }) {
         <div className="mt-10 rounded-3xl bg-white p-8 text-left text-[#222] shadow-2xl">
           <div className="flex items-center justify-between">
             <span className="font-[var(--font-nohemi)] text-lg font-bold">
-              {plan.name}
+              {plan.name.toUpperCase()}
             </span>
             <span className="rounded-full bg-[#db4927]/10 px-3 py-1 text-xs font-bold text-[#db4927]">
               {discountLabel}
@@ -49,7 +49,7 @@ export function Pricing({ pricing }: { pricing: PlanPricing | null }) {
             Get Started
           </CheckoutButton>
           <p className="mt-3 text-center text-xs text-[#444]">
-            Cancel anytime. 100% money-back guarantee within 14 days.
+            Cancel anytime. 100% money-back guarantee within 30 days.
           </p>
         </div>
       </div>
