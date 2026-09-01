@@ -67,21 +67,21 @@ export const testimonials = [
   {
     quote:
       "Finding the right app for women can be hard... Stef is breaking mould.",
-    source: "App Store",
+    source: "Emily",
   },
   {
     quote:
       "One of the best workout apps for women I've used. It's super user friendly.",
-    source: "App Store",
+    source: "Priya",
   },
   {
     quote: "The app is one of the best of its kind out there.",
-    source: "App Store",
+    source: "Chloe",
   },
   {
     quote:
       "Subscribed when launched. I love the improvements... Workouts completely work! 🔥",
-    source: "App Store",
+    source: "Maria",
   },
 ];
 

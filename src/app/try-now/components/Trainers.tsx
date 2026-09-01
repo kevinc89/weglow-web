@@ -7,7 +7,7 @@ export function Trainers() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold text-[#222] sm:text-4xl">
-            Meet your trainers
+            Meet some of your trainers
           </h2>
           <p className="mt-3 text-lg text-[#444]">
             Six specialized coaches. Every style of training.
