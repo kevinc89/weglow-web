@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { Fraunces } from "next/font/google";
 
 export const nohemi = localFont({
   src: [
@@ -17,5 +18,13 @@ export const creato = localFont({
     { path: "./CreatoDisplay-Bold.otf", weight: "700", style: "normal" },
   ],
   variable: "--font-creato",
+  display: "swap",
+});
+
+export const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
   display: "swap",
 });
