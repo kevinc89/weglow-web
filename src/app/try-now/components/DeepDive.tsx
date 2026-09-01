@@ -28,7 +28,7 @@ export function DeepDive({ eyebrow, title, body, bullets, image, imageAlt, rever
           )}
         </div>
 
-        <div>
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <span className="font-[var(--font-nohemi)] text-sm font-bold uppercase tracking-wide text-[#db4927]">
             {eyebrow}
           </span>
@@ -38,7 +38,7 @@ export function DeepDive({ eyebrow, title, body, bullets, image, imageAlt, rever
           <p className="mt-4 text-lg leading-8 text-[#444]">{body}</p>
           <ul className="mt-6 space-y-3">
             {bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-3 text-[#222]">
+              <li key={bullet} className="flex items-start justify-center gap-3 text-[#222] md:justify-start">
                 <svg
                   width="20"
                   height="20"

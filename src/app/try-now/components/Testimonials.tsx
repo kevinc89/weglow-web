@@ -14,8 +14,14 @@ export function Testimonials() {
 
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
         {testimonials.map((t) => (
-          <div key={t.quote} className="rounded-2xl bg-[#f8f8f8] p-6">
-            <div className="flex gap-1 text-[#db4927]" aria-hidden>
+          <div
+            key={t.quote}
+            className="rounded-2xl bg-[#f8f8f8] p-6 text-center sm:text-left"
+          >
+            <div
+              className="flex justify-center gap-1 text-[#db4927] sm:justify-start"
+              aria-hidden
+            >
               {"★★★★★"}
             </div>
             <p className="mt-3 text-[#222]">&ldquo;{t.quote}&rdquo;</p>

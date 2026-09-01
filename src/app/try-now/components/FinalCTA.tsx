@@ -5,7 +5,7 @@ export function FinalCTA() {
   return (
     <section className="relative overflow-hidden bg-[#fde8e5] py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 md:grid-cols-2">
-        <div className="order-2 md:order-1">
+        <div className="order-2 flex flex-col items-center text-center md:order-1 md:items-start md:text-left">
           <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold leading-tight text-[#222] sm:text-4xl">
             Stop guessing. Start glowing.
           </h2>
