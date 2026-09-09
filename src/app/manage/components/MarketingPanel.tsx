@@ -25,8 +25,8 @@ const CONTENT: Record<
       "Cancel with ease — no phone calls",
     ],
     photo: {
-      src: "/manage/photos/guided-workout.jpg",
-      alt: "A WEGLOW member smiling mid-workout on her mat",
+      src: "/manage/photos/stability-ball.jpg",
+      alt: "A WEGLOW member mid-stretch in her home gym",
     },
   },
   steady: {
@@ -75,6 +75,10 @@ export function MarketingPanel({ group }: { group: MarketingGroup }) {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+      {/* Softens the seam where the transparent header meets the photo, so
+          the blush page background feels like it fades into the image
+          rather than cutting off in a hard line. */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#fde8e5] to-transparent sm:h-28" />
 
       <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
         <h1 className="font-[var(--font-nohemi)] text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-5xl">

@@ -150,8 +150,8 @@ export const featureOptions: FeatureOption[] = [
     title: "On-Demand Classes",
     icon: "🎥",
     photo: {
-      src: "/manage/photos/core-workout.jpg",
-      alt: "A member mid-class, holding a side plank",
+      src: "/manage/photos/gym-strength.jpg",
+      alt: "A member mid-class on the strength rack",
     },
     body: "Train with 6 specialized trainers across strength, pilates, cardio, yoga, barre & more — any time, on your schedule.",
     steps: [
