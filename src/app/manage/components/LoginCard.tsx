@@ -29,7 +29,7 @@ export function LoginCard({
           Sign in
         </h2>
         <p className="mt-2 text-sm text-[#444]">
-          Use the same email and password you use in the WeGlow app.
+          Use the same email and password you use in the WEGLOW app.
         </p>
 
         <div className="mt-6 space-y-4">
@@ -71,10 +71,10 @@ export function LoginCard({
         </button>
 
         <p className="mt-4 text-center text-xs text-[#444]">
-          Forgot your password? Reset it from Settings in the WeGlow app.
+          Forgot your password? Reset it from Settings in the WEGLOW app.
         </p>
         <p className="mt-6 border-t border-[#222]/10 pt-4 text-center text-xs text-[#444]">
-          New to WeGlow?{" "}
+          New to WEGLOW?{" "}
           <a
             href="https://www.weglow.app/"
             className="font-semibold text-[#db4927] hover:underline"

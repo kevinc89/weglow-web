@@ -40,7 +40,7 @@ export function UpdatePaymentCard({
           Update your payment method
         </h2>
         <p className="mt-2 text-sm text-[#444]">
-          Your details are encrypted and only ever used for your WeGlow
+          Your details are encrypted and only ever used for your WEGLOW
           membership. Nothing else about your plan changes.
         </p>
 

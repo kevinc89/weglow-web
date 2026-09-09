@@ -27,7 +27,7 @@ export function ChangePlanCard({
 
       <div className="p-8 pt-4">
         <h2 className="font-[var(--font-nohemi)] text-2xl font-extrabold text-[#222]">
-          Select your WeGlow plan
+          Select your WEGLOW plan
         </h2>
         <p className="mt-2 text-sm text-[#444]">
           Pick whatever rhythm feels right — you can change again anytime.

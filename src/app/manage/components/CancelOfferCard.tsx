@@ -50,7 +50,7 @@ export function CancelOfferCard({
               Switch to {switchTier.label} and save
             </h2>
             <p className="mt-2 text-sm text-[#444]">
-              Same WeGlow, same workouts and coaching — just a rhythm that
+              Same WEGLOW, same workouts and coaching — just a rhythm that
               works better for your budget.
             </p>
 
@@ -103,7 +103,7 @@ export function CancelOfferCard({
             </h2>
             <p className="mt-2 text-sm text-[#444]">
               You&apos;re already on our best-value plan, so here&apos;s a
-              discount instead — same WeGlow, same everything, just a gentler
+              discount instead — same WEGLOW, same everything, just a gentler
               price on your next renewal.
             </p>
 

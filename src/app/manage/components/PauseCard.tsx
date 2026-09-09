@@ -26,7 +26,7 @@ export function PauseCard({
           If now isn&apos;t the right time, rest your membership for a month
           instead of leaving. You won&apos;t be charged while it&apos;s
           paused, your streaks and progress stay exactly where they are, and
-          WeGlow will be here when you&apos;re ready to pick things back up.
+          WEGLOW will be here when you&apos;re ready to pick things back up.
         </p>
 
         <div className="mt-6 rounded-2xl border-2 border-[#db4927]/30 bg-[#db4927]/5 p-5">

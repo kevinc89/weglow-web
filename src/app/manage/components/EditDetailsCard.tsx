@@ -36,7 +36,7 @@ export function EditDetailsCard({
         </h2>
         <p className="mt-2 text-sm text-[#444]">
           Keep your name and email current so we can reach you and you never
-          miss anything from WeGlow.
+          miss anything from WEGLOW.
         </p>
 
         <div className="mt-5 space-y-3">

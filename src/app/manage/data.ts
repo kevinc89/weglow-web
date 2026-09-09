@@ -66,3 +66,104 @@ export const cancelReasons: CancelReason[] = [
   { id: "technical", label: "I ran into technical issues" },
   { id: "break", label: "Just need a break" },
 ];
+
+// Support inbox used on the "technical issues" retention screen.
+export const SUPPORT_EMAIL = "Support@weglow.app";
+
+// Quick-tap tags on the "not using it enough" feedback screen.
+export const engagementTags = [
+  "Forget to open the app",
+  "Don't know what to do",
+  "Workouts take too long",
+  "Need more variety",
+];
+
+export type FeatureOption = {
+  id: string;
+  label: string;
+  title: string;
+  icon: string;
+  body: string;
+  steps: string[];
+  ctaLabel: string;
+};
+
+// Options + explainers for the "missing a workout or feature" retention
+// screen, each mapped to a real WEGLOW capability (see brand.ts `plan.features`)
+// so the walkthrough always points at something that actually exists.
+export const featureOptions: FeatureOption[] = [
+  {
+    id: "guidance",
+    label: "More guidance on what to do",
+    title: "Guides & Challenges",
+    icon: "🧭",
+    body: "WEGLOW's Guides walk you through exactly what to do and when — no guesswork, no decision fatigue.",
+    steps: [
+      "Open the WEGLOW app and tap Guides from the home tab.",
+      "Pick a guide that matches your goal — strength, cardio, or a full challenge.",
+      "Follow the daily plan. We'll tell you exactly what's next.",
+    ],
+    ctaLabel: "Open Guides in WEGLOW",
+  },
+  {
+    id: "cycle",
+    label: "Cycle-synced workouts",
+    title: "Cycle-Synced Training",
+    icon: "🌙",
+    body: "WEGLOW adapts your workouts to your menstrual cycle and hormones, so you train with your body instead of against it.",
+    steps: [
+      "Add your cycle info in Settings → Health.",
+      "Your weekly plan automatically adjusts intensity to your phase.",
+      "Swap any workout anytime — we'll re-balance the week for you.",
+    ],
+    ctaLabel: "Set up cycle tracking",
+  },
+  {
+    id: "nutrition",
+    label: "Nutrition & meal plans",
+    title: "Meal Plans & Recipes",
+    icon: "🥗",
+    body: "Dietician-approved recipes and a meal plan built around your goals and calorie target — right in the Nutrition tab.",
+    steps: [
+      "Open the Nutrition tab in the WEGLOW app.",
+      "Set your goal and we'll build your weekly meal plan.",
+      "Swap any recipe you don't love — we'll keep your macros on track.",
+    ],
+    ctaLabel: "Open Nutrition in WEGLOW",
+  },
+  {
+    id: "classes",
+    label: "Live or on-demand classes",
+    title: "On-Demand Classes",
+    icon: "🎥",
+    body: "Train with 6 specialized trainers across strength, pilates, cardio, yoga, barre & more — any time, on your schedule.",
+    steps: [
+      "Open the Workouts tab and browse Classes.",
+      "Pick a trainer and a class length that fits your day.",
+      "Press play — no scheduling, no sign-ups.",
+    ],
+    ctaLabel: "Browse classes in WEGLOW",
+  },
+  {
+    id: "progress",
+    label: "Progress tracking & badges",
+    title: "Progress, Streaks & Badges",
+    icon: "🏅",
+    body: "Every workout logs your stats automatically, and badges celebrate your streaks and milestones along the way.",
+    steps: [
+      "Finish any workout — your stats save automatically.",
+      "Check your Progress tab for weekly trends and streaks.",
+      "Unlock badges as you hit milestones.",
+    ],
+    ctaLabel: "View your progress in WEGLOW",
+  },
+  {
+    id: "other",
+    label: "Something else",
+    title: "Tell us what you need",
+    icon: "💬",
+    body: "We couldn't find an exact match. Tell our team what you're looking for and we'll let you know if it's on the way.",
+    steps: [],
+    ctaLabel: `Email ${SUPPORT_EMAIL}`,
+  },
+];

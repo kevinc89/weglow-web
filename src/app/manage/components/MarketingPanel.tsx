@@ -10,7 +10,7 @@ const CONTENT: Record<
     pre: "Hey, welcome",
     italic: "back",
     post: ".",
-    body: "Sign in with your WeGlow account to manage your membership — switch plans, pause, or update billing in a couple of taps.",
+    body: "Sign in with your WEGLOW account to manage your membership — switch plans, pause, or update billing in a couple of taps.",
     bullets: [
       "Switch your plan anytime",
       "Pause without losing your progress",
@@ -18,7 +18,7 @@ const CONTENT: Record<
     ],
   },
   steady: {
-    pre: "Your WeGlow, your",
+    pre: "Your WEGLOW, your",
     italic: "rules",
     post: ".",
     body: "Update billing, switch plans, or take a break — all in one place, whenever you need it.",
@@ -32,7 +32,7 @@ const CONTENT: Record<
     pre: "Before you",
     italic: "decide",
     post: ", hear us out.",
-    body: "Whatever's going on, there's probably a way to make WeGlow fit. We'd love for you to stay.",
+    body: "Whatever's going on, there's probably a way to make WEGLOW fit. We'd love for you to stay.",
     bullets: [
       "Switch your plan",
       "Pause instead of cancelling",

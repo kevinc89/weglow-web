@@ -29,7 +29,7 @@ export function CancelConfirmCard({
         </h2>
         <p className="mt-3 text-sm text-[#444]">
           You&apos;ll keep full access until <strong className="text-[#222]">{renews}</strong>.
-          After that WeGlow won&apos;t renew and you won&apos;t be charged
+          After that WEGLOW won&apos;t renew and you won&apos;t be charged
           again. Your workouts, streaks and progress stay put unless you ask
           us to remove them.
         </p>
@@ -38,7 +38,7 @@ export function CancelConfirmCard({
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-[#444]">Plan</span>
             <span className="font-medium text-[#222]">
-              WeGlow {plan.label} Plan
+              WEGLOW {plan.label} Plan
             </span>
           </div>
           <div className="flex items-center justify-between px-4 py-3">

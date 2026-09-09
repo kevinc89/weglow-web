@@ -13,12 +13,17 @@ import { ChangePlanCard } from "./components/ChangePlanCard";
 import { PauseCard } from "./components/PauseCard";
 import { CancelReasonCard } from "./components/CancelReasonCard";
 import { CancelOfferCard, type OfferKind } from "./components/CancelOfferCard";
+import { CancelSupportCard } from "./components/CancelSupportCard";
+import { CancelFeedbackCard } from "./components/CancelFeedbackCard";
+import { CancelFeatureListCard } from "./components/CancelFeatureListCard";
+import { CancelFeatureDetailCard } from "./components/CancelFeatureDetailCard";
 import { CancelConfirmCard } from "./components/CancelConfirmCard";
 import { CancelDoneCard } from "./components/CancelDoneCard";
 import { UpdatePaymentCard } from "./components/UpdatePaymentCard";
 import { EditDetailsCard } from "./components/EditDetailsCard";
 import {
   currentPlanId,
+  featureOptions,
   mockAccount,
   mockPaymentMethod,
   planTiers,
@@ -38,6 +43,10 @@ type View =
   | "pause"
   | "cancel-reason"
   | "cancel-offer"
+  | "cancel-support"
+  | "cancel-feedback"
+  | "cancel-feature-list"
+  | "cancel-feature-detail"
   | "cancel-confirm"
   | "cancel-done"
   | "update-payment"
@@ -52,9 +61,28 @@ const MARKETING_GROUP: Record<View, MarketingGroup> = {
   pause: "retention",
   "cancel-reason": "retention",
   "cancel-offer": "retention",
+  "cancel-support": "retention",
+  "cancel-feedback": "retention",
+  "cancel-feature-list": "retention",
+  "cancel-feature-detail": "retention",
   "cancel-confirm": "retention",
   "cancel-done": "retention",
 };
+
+// Where "Continue" on the reason screen routes to — most reasons get a
+// dedicated retention screen instead of the generic switch/discount/pause offer.
+function offerViewForReason(reasonId: CancelReason["id"] | null): View {
+  switch (reasonId) {
+    case "technical":
+      return "cancel-support";
+    case "not_using":
+      return "cancel-feedback";
+    case "missing_feature":
+      return "cancel-feature-list";
+    default:
+      return "cancel-offer";
+  }
+}
 
 export function ManageApp({ pricing }: { pricing: PlanPricing | null }) {
   const [authed, setAuthed] = useState(false);
@@ -69,6 +97,7 @@ export function ManageApp({ pricing }: { pricing: PlanPricing | null }) {
   const [cancelReasonId, setCancelReasonId] = useState<
     CancelReason["id"] | null
   >(null);
+  const [featureId, setFeatureId] = useState<string | null>(null);
 
   const [toast, setToast] = useState<string | null>(null);
   const toastTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -246,12 +275,57 @@ export function ManageApp({ pricing }: { pricing: PlanPricing | null }) {
                 onStay={goDashboard}
                 onContinue={(reasonId, feedback) => {
                   setCancelReasonId(reasonId);
-                  setView("cancel-offer");
+                  setView(offerViewForReason(reasonId));
                   track("Manage Cancel Reason Selected", {
                     Reason: reasonId,
                     Feedback: feedback || undefined,
                   });
                 }}
+              />
+            ) : null}
+
+            {view === "cancel-support" ? (
+              <CancelSupportCard
+                onBack={() => setView("cancel-reason")}
+                onContinueToCancel={() => setView("cancel-confirm")}
+              />
+            ) : null}
+
+            {view === "cancel-feedback" ? (
+              <CancelFeedbackCard
+                onBack={() => setView("cancel-reason")}
+                onSend={(tags, feedback) => {
+                  track("Manage Cancel Feedback Sent", {
+                    Tags: tags,
+                    Feedback: feedback || undefined,
+                  });
+                  goDashboard();
+                  showToast("Thanks for the feedback — you're all set");
+                }}
+                onContinueToCancel={() => setView("cancel-confirm")}
+              />
+            ) : null}
+
+            {view === "cancel-feature-list" ? (
+              <CancelFeatureListCard
+                onBack={() => setView("cancel-reason")}
+                onShowMe={(id) => {
+                  setFeatureId(id);
+                  setView("cancel-feature-detail");
+                  track("Manage Cancel Feature Selected", { Feature: id });
+                }}
+                onContinueToCancel={() => setView("cancel-confirm")}
+              />
+            ) : null}
+
+            {view === "cancel-feature-detail" ? (
+              <CancelFeatureDetailCard
+                feature={
+                  featureOptions.find((f) => f.id === featureId) ??
+                  featureOptions[0]
+                }
+                onBack={() => setView("cancel-feature-list")}
+                onContinueToCancel={() => setView("cancel-confirm")}
               />
             ) : null}
 
@@ -288,7 +362,7 @@ export function ManageApp({ pricing }: { pricing: PlanPricing | null }) {
               <CancelConfirmCard
                 plan={currentTier}
                 renews={subscriptionDates.renews}
-                onBack={() => setView("cancel-offer")}
+                onBack={() => setView(offerViewForReason(cancelReasonId))}
                 onKeepSubscription={() => {
                   goDashboard();
                   showToast("Glad you're staying — your membership is active");

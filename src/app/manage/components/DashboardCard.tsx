@@ -58,7 +58,7 @@ export function DashboardCard({
         </p>
         <div className="mt-2 flex items-center gap-2">
           <h2 className="font-[var(--font-nohemi)] text-xl font-extrabold text-[#222]">
-            WeGlow {plan.label} Plan
+            WEGLOW {plan.label} Plan
           </h2>
           <span
             className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_CLASS[status]}`}
