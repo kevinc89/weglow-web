@@ -8,7 +8,7 @@ export function Header({
   onSignOut: () => void;
 }) {
   return (
-    <header className="relative z-10 flex items-center justify-between px-6 py-6 sm:px-10">
+    <header className="relative z-20 flex items-center justify-between bg-[#fde8e5] px-6 py-6 shadow-[0_6px_20px_-4px_rgba(34,34,34,0.18)] sm:px-10">
       <a href="https://www.weglow.app/" className="shrink-0">
         <Logo />
       </a>

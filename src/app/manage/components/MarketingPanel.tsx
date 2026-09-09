@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { CheckIcon } from "./PanelCard";
 
-export type MarketingGroup = "login" | "steady" | "retention";
+export type MarketingGroup = "login" | "steady" | "retention" | "pause";
 
 const CONTENT: Record<
   MarketingGroup,
@@ -55,8 +55,23 @@ const CONTENT: Record<
       "Keep your progress & streaks",
     ],
     photo: {
-      src: "/manage/photos/recovery-stretch.jpg",
-      alt: "A WEGLOW member stretching during a recovery day",
+      src: "/manage/photos/strength-rings.jpg",
+      alt: "A WEGLOW member hitting a strength milestone on the gymnastic rings",
+    },
+  },
+  pause: {
+    pre: "Before you",
+    italic: "decide",
+    post: ", hear us out.",
+    body: "Whatever's going on, there's probably a way to make WEGLOW fit. We'd love for you to stay.",
+    bullets: [
+      "Switch your plan",
+      "Pause instead of cancelling",
+      "Keep your progress & streaks",
+    ],
+    photo: {
+      src: "/manage/photos/kitchen-app.jpg",
+      alt: "A WEGLOW member checking her plan on her phone in the kitchen",
     },
   },
 };
@@ -75,10 +90,6 @@ export function MarketingPanel({ group }: { group: MarketingGroup }) {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-      {/* Softens the seam where the transparent header meets the photo, so
-          the blush page background feels like it fades into the image
-          rather than cutting off in a hard line. */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#fde8e5] to-transparent sm:h-28" />
 
       <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
         <h1 className="font-[var(--font-nohemi)] text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-5xl">

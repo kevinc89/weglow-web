@@ -61,7 +61,7 @@ const MARKETING_GROUP: Record<View, MarketingGroup> = {
   "change-plan": "steady",
   "update-payment": "steady",
   "edit-details": "steady",
-  pause: "retention",
+  pause: "pause",
   "cancel-reason": "retention",
   "cancel-offer": "retention",
   "cancel-support": "retention",
