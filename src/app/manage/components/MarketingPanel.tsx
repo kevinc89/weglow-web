@@ -1,10 +1,18 @@
+import Image from "next/image";
 import { CheckIcon } from "./PanelCard";
 
 export type MarketingGroup = "login" | "steady" | "retention";
 
 const CONTENT: Record<
   MarketingGroup,
-  { pre: string; italic: string; post: string; body: string; bullets: string[] }
+  {
+    pre: string;
+    italic: string;
+    post: string;
+    body: string;
+    bullets: string[];
+    photo: { src: string; alt: string; width: number; height: number };
+  }
 > = {
   login: {
     pre: "Hey, welcome",
@@ -16,6 +24,12 @@ const CONTENT: Record<
       "Pause without losing your progress",
       "Cancel with ease — no phone calls",
     ],
+    photo: {
+      src: "/manage/photos/guided-workout.jpg",
+      alt: "A WEGLOW member smiling mid-workout on her mat",
+      width: 800,
+      height: 1200,
+    },
   },
   steady: {
     pre: "Your WEGLOW, your",
@@ -27,6 +41,12 @@ const CONTENT: Record<
       "Update payment details in seconds",
       "Your streaks & progress stay saved",
     ],
+    photo: {
+      src: "/manage/photos/kitchen-app.jpg",
+      alt: "A WEGLOW member checking her plan on her phone in the kitchen",
+      width: 800,
+      height: 1200,
+    },
   },
   retention: {
     pre: "Before you",
@@ -38,6 +58,12 @@ const CONTENT: Record<
       "Pause instead of cancelling",
       "Keep your progress & streaks",
     ],
+    photo: {
+      src: "/manage/photos/recovery-stretch.jpg",
+      alt: "A WEGLOW member stretching during a recovery day",
+      width: 1200,
+      height: 1088,
+    },
   },
 };
 
@@ -65,6 +91,19 @@ export function MarketingPanel({ group }: { group: MarketingGroup }) {
           </li>
         ))}
       </ul>
+
+      <div className="relative mt-10 hidden max-w-[15rem] lg:block">
+        <div className="absolute -inset-6 -z-10 rounded-full bg-[#db4927]/10 blur-3xl" />
+        <div className="overflow-hidden rounded-[2rem] shadow-xl shadow-[#222]/10">
+          <Image
+            src={content.photo.src}
+            alt={content.photo.alt}
+            width={content.photo.width}
+            height={content.photo.height}
+            className="h-auto w-full object-cover"
+          />
+        </div>
+      </div>
     </div>
   );
 }

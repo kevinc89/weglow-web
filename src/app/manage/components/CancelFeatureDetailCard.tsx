@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { BackLink, PanelCard } from "./PanelCard";
 import { SUPPORT_EMAIL, type FeatureOption } from "../data";
 
@@ -19,16 +20,24 @@ export function CancelFeatureDetailCard({
       <BackLink onClick={onBack} />
 
       <div className="p-8 pt-6">
-        <div className="flex items-center gap-3">
+        {feature.photo ? (
+          <div className="relative h-40 w-full overflow-hidden rounded-2xl">
+            <Image
+              src={feature.photo.src}
+              alt={feature.photo.alt}
+              fill
+              sizes="400px"
+              className="object-cover"
+            />
+            <span className="absolute top-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-emerald-700 backdrop-blur-sm">
+              Already included
+            </span>
+          </div>
+        ) : (
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#db4927]/10 text-lg">
             {feature.icon}
           </div>
-          {!isOther ? (
-            <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
-              Already included
-            </span>
-          ) : null}
-        </div>
+        )}
 
         <h2 className="mt-4 font-[var(--font-nohemi)] text-2xl font-extrabold leading-tight text-[#222]">
           {feature.title}

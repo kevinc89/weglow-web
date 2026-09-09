@@ -83,6 +83,7 @@ export type FeatureOption = {
   label: string;
   title: string;
   icon: string;
+  photo?: { src: string; alt: string };
   body: string;
   steps: string[];
   ctaLabel: string;
@@ -97,6 +98,10 @@ export const featureOptions: FeatureOption[] = [
     label: "More guidance on what to do",
     title: "Guides & Challenges",
     icon: "🧭",
+    photo: {
+      src: "/manage/photos/guided-workout.jpg",
+      alt: "A member following a guided resistance-band routine on her mat",
+    },
     body: "WEGLOW's Guides walk you through exactly what to do and when — no guesswork, no decision fatigue.",
     steps: [
       "Open the WEGLOW app and tap Guides from the home tab.",
@@ -110,6 +115,10 @@ export const featureOptions: FeatureOption[] = [
     label: "Cycle-synced workouts",
     title: "Cycle-Synced Training",
     icon: "🌙",
+    photo: {
+      src: "/manage/photos/recovery-stretch.jpg",
+      alt: "A member foam rolling during a gentler, recovery-phase workout",
+    },
     body: "WEGLOW adapts your workouts to your menstrual cycle and hormones, so you train with your body instead of against it.",
     steps: [
       "Add your cycle info in Settings → Health.",
@@ -123,6 +132,10 @@ export const featureOptions: FeatureOption[] = [
     label: "Nutrition & meal plans",
     title: "Meal Plans & Recipes",
     icon: "🥗",
+    photo: {
+      src: "/manage/photos/kitchen-app.jpg",
+      alt: "A member checking her WEGLOW meal plan while prepping a smoothie",
+    },
     body: "Dietician-approved recipes and a meal plan built around your goals and calorie target — right in the Nutrition tab.",
     steps: [
       "Open the Nutrition tab in the WEGLOW app.",
@@ -136,6 +149,10 @@ export const featureOptions: FeatureOption[] = [
     label: "Live or on-demand classes",
     title: "On-Demand Classes",
     icon: "🎥",
+    photo: {
+      src: "/manage/photos/core-workout.jpg",
+      alt: "A member mid-class, holding a side plank",
+    },
     body: "Train with 6 specialized trainers across strength, pilates, cardio, yoga, barre & more — any time, on your schedule.",
     steps: [
       "Open the Workouts tab and browse Classes.",
@@ -149,6 +166,10 @@ export const featureOptions: FeatureOption[] = [
     label: "Progress tracking & badges",
     title: "Progress, Streaks & Badges",
     icon: "🏅",
+    photo: {
+      src: "/manage/photos/strength-rings.jpg",
+      alt: "A member hitting a strength milestone on the gymnastic rings",
+    },
     body: "Every workout logs your stats automatically, and badges celebrate your streaks and milestones along the way.",
     steps: [
       "Finish any workout — your stats save automatically.",

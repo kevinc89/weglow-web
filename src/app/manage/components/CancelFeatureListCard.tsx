@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { BackLink, PanelCard } from "./PanelCard";
 import { featureOptions, type FeatureOption } from "../data";
 
@@ -54,6 +55,21 @@ export function CancelFeatureListCard({
                   <span className="h-2 w-2 rounded-full bg-[#db4927]" />
                 ) : null}
               </span>
+              {feature.photo ? (
+                <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg">
+                  <Image
+                    src={feature.photo.src}
+                    alt=""
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </span>
+              ) : (
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#db4927]/10 text-lg">
+                  {feature.icon}
+                </span>
+              )}
               <span className="text-[#222]">{feature.label}</span>
             </button>
           ))}
