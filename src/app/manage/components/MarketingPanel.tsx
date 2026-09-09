@@ -11,7 +11,7 @@ const CONTENT: Record<
     post: string;
     body: string;
     bullets: string[];
-    photo: { src: string; alt: string; width: number; height: number };
+    photo: { src: string; alt: string };
   }
 > = {
   login: {
@@ -27,8 +27,6 @@ const CONTENT: Record<
     photo: {
       src: "/manage/photos/guided-workout.jpg",
       alt: "A WEGLOW member smiling mid-workout on her mat",
-      width: 800,
-      height: 1200,
     },
   },
   steady: {
@@ -44,8 +42,6 @@ const CONTENT: Record<
     photo: {
       src: "/manage/photos/kitchen-app.jpg",
       alt: "A WEGLOW member checking her plan on her phone in the kitchen",
-      width: 800,
-      height: 1200,
     },
   },
   retention: {
@@ -61,8 +57,6 @@ const CONTENT: Record<
     photo: {
       src: "/manage/photos/recovery-stretch.jpg",
       alt: "A WEGLOW member stretching during a recovery day",
-      width: 1200,
-      height: 1088,
     },
   },
 };
@@ -71,38 +65,39 @@ export function MarketingPanel({ group }: { group: MarketingGroup }) {
   const content = CONTENT[group];
 
   return (
-    <div className="max-w-lg animate-fade-in-up py-4">
-      <h1 className="font-[var(--font-nohemi)] text-4xl font-extrabold leading-tight tracking-tight text-[#222] sm:text-5xl">
-        {content.pre}{" "}
-        <span className="font-[var(--font-fraunces)] italic text-[#db4927]">
-          {content.italic}
-        </span>
-        {content.post}
-      </h1>
-      <p className="mt-5 max-w-md text-lg text-[#444]">{content.body}</p>
+    <div className="relative h-48 w-full shrink-0 overflow-hidden sm:h-56 lg:h-auto lg:w-1/2">
+      <Image
+        src={content.photo.src}
+        alt={content.photo.alt}
+        fill
+        priority
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
-      <ul className="mt-8 space-y-3">
-        {content.bullets.map((bullet) => (
-          <li key={bullet} className="flex items-center gap-3 text-[#222]">
-            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#db4927]/10 text-[#db4927]">
-              <CheckIcon />
-            </span>
-            {bullet}
-          </li>
-        ))}
-      </ul>
+      <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
+        <h1 className="font-[var(--font-nohemi)] text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-5xl">
+          {content.pre}{" "}
+          <span className="font-[var(--font-fraunces)] italic text-[#ffd9c7]">
+            {content.italic}
+          </span>
+          {content.post}
+        </h1>
+        <p className="mt-4 hidden max-w-md text-lg text-white/85 lg:block">
+          {content.body}
+        </p>
 
-      <div className="relative mt-10 hidden max-w-[15rem] lg:block">
-        <div className="absolute -inset-6 -z-10 rounded-full bg-[#db4927]/10 blur-3xl" />
-        <div className="overflow-hidden rounded-[2rem] shadow-xl shadow-[#222]/10">
-          <Image
-            src={content.photo.src}
-            alt={content.photo.alt}
-            width={content.photo.width}
-            height={content.photo.height}
-            className="h-auto w-full object-cover"
-          />
-        </div>
+        <ul className="mt-6 hidden space-y-2.5 lg:block">
+          {content.bullets.map((bullet) => (
+            <li key={bullet} className="flex items-center gap-3 text-white">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/20 text-white">
+                <CheckIcon />
+              </span>
+              {bullet}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
