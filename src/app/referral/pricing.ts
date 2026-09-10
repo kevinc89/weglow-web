@@ -13,3 +13,7 @@ export const REFERRAL_PLAN = {
 export const REFERRAL_SAVINGS = Math.round(
   REFERRAL_PLAN.compareAtPrice - REFERRAL_PLAN.price,
 );
+
+export const REFERRAL_SAVINGS_PERCENT = Math.round(
+  (REFERRAL_SAVINGS / REFERRAL_PLAN.compareAtPrice) * 100,
+);

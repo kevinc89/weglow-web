@@ -1,15 +1,20 @@
+import Image from "next/image";
 import { plan } from "@/lib/brand";
-import { REFERRAL_PLAN, REFERRAL_SAVINGS } from "../pricing";
+import {
+  REFERRAL_PLAN,
+  REFERRAL_SAVINGS,
+  REFERRAL_SAVINGS_PERCENT,
+} from "../pricing";
 import { CheckoutButton } from "./CheckoutButton";
 import { Reveal } from "./Reveal";
 import { CountUp } from "./CountUp";
 
 export function Pricing() {
   return (
-    <section className="bg-[#222] py-16 text-white md:py-24">
+    <section className="bg-[#222] py-16 md:py-24">
       <div className="mx-auto max-w-2xl px-6 text-center">
         <Reveal>
-          <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold sm:text-4xl">
+          <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold text-white sm:text-4xl">
             Claim your friend&apos;s discount
           </h2>
           <p className="mt-3 text-lg text-white/70">
@@ -18,68 +23,98 @@ export function Pricing() {
         </Reveal>
 
         <Reveal delay={150}>
-          <div className="relative mt-10 rounded-3xl border-2 border-[#db4927] bg-white p-8 text-left text-[#222] shadow-2xl">
-            <div className="flex items-center justify-between">
-              <span className="font-[var(--font-nohemi)] text-lg font-bold">
-                ANNUAL PLAN
-              </span>
-              <span className="animate-pop-in rounded-full bg-[#db4927]/10 px-3 py-1 text-xs font-bold text-[#db4927]">
-                Referral Discount
-              </span>
-            </div>
-            <p className="mt-1 text-sm text-[#444]">
-              Our most popular plan. Now discounted.
-            </p>
+          <div className="mt-10 overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl">
+            <div className="relative h-64 w-full sm:h-72">
+              <Image
+                src="/manage/photos/stability-ball.jpg"
+                alt="A WEGLOW member training in her home gym"
+                fill
+                sizes="(min-width: 640px) 512px, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
 
-            <div className="mt-4 flex items-end gap-2">
-              <span className="text-lg text-[#444] line-through">
-                ${REFERRAL_PLAN.compareAtPrice}
-              </span>
-              <span className="font-[var(--font-nohemi)] text-4xl font-extrabold">
-                $<CountUp end={69} suffix=".99" duration={900} />
-              </span>
-              <span className="pb-1 text-[#444]">/ {REFERRAL_PLAN.interval}</span>
-            </div>
-            <p className="mt-1 text-xs font-bold text-[#db4927]">
-              Save ${REFERRAL_SAVINGS} + get {REFERRAL_PLAN.trialDays} days
-              free
-            </p>
+              <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-[#db4927] shadow-sm">
+                🎁 Referral discount
+              </div>
+              <p className="absolute top-5 right-5 text-xs font-semibold tracking-wider text-white/80 uppercase">
+                Friends only
+              </p>
 
-            <ul className="mt-6 space-y-3">
-              {plan.features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-2 text-sm text-[#222]"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    className="mt-0.5 shrink-0 text-[#db4927]"
+              <div className="absolute right-5 bottom-4 left-5 flex items-end gap-3">
+                <p className="font-[var(--font-nohemi)] text-6xl leading-none font-extrabold text-white sm:text-7xl">
+                  <CountUp end={REFERRAL_SAVINGS_PERCENT} suffix="%" />
+                </p>
+                <p className="pb-1 font-[var(--font-nohemi)] text-2xl font-extrabold text-[#ffb199] sm:text-3xl">
+                  off
+                </p>
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-8">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <span className="font-[var(--font-nohemi)] text-lg font-bold text-[#222]">
+                  ANNUAL PLAN
+                </span>
+                <p>
+                  <span className="text-sm text-[#444] line-through">
+                    ${REFERRAL_PLAN.compareAtPrice}
+                  </span>{" "}
+                  <span className="font-[var(--font-nohemi)] text-2xl font-extrabold text-[#222]">
+                    ${REFERRAL_PLAN.price}
+                  </span>{" "}
+                  <span className="text-sm text-[#444]">
+                    /{REFERRAL_PLAN.interval}
+                  </span>
+                </p>
+              </div>
+              <p className="mt-1 text-sm text-[#444]">
+                Your first year of WEGLOW, at your friend&apos;s price.
+              </p>
+
+              <ul className="mt-6 space-y-3">
+                {plan.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-3 text-sm text-[#222]"
                   >
-                    <path
-                      d="M2.5 7L5.5 10L11.5 3.5"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#db4927]/10 text-[#db4927]">
+                      <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                        <path
+                          d="M2.5 7L5.5 10L11.5 3.5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
 
-            <CheckoutButton className="mt-7 block w-full rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-              Start your free trial
-            </CheckoutButton>
-            <p className="mt-3 text-center text-xs text-[#444]">
-              {REFERRAL_PLAN.trialDays} days free, then $
-              {REFERRAL_PLAN.price}/{REFERRAL_PLAN.interval}, billed
-              automatically. Cancel before your trial ends and you won&apos;t
-              be charged.
-            </p>
+              <div className="mt-6 flex items-start gap-3 rounded-2xl bg-emerald-50 p-4">
+                <span className="text-lg" aria-hidden>
+                  ⏰
+                </span>
+                <p className="text-sm text-emerald-900">
+                  This discount only applies to your first subscription.
+                  Once it&apos;s gone, it&apos;s gone.
+                </p>
+              </div>
+
+              <CheckoutButton className="mt-6 block w-full rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                Get {REFERRAL_SAVINGS_PERCENT}% off: ${REFERRAL_PLAN.price}/
+                {REFERRAL_PLAN.interval}
+              </CheckoutButton>
+              <p className="mt-3 text-center text-xs text-[#444]">
+                {REFERRAL_PLAN.trialDays} days free, then $
+                {REFERRAL_PLAN.price} billed automatically. Cancel before
+                your trial ends and you won&apos;t be charged. Either way,
+                you save ${REFERRAL_SAVINGS}.
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>

@@ -10,7 +10,7 @@ export type ConfettiPiece = {
 const COLORS = ["#db4927", "#2d62ff", "#dd23bb", "#ffd9c7", "#222222"];
 const PIECE_COUNT = 16;
 
-// Generates the random particle data for one burst — called from the click
+// Generates the random particle data for one burst. Called from the click
 // handler (an event, not render) so the component below stays pure.
 export function makeConfettiBurst(): ConfettiPiece[] {
   return Array.from({ length: PIECE_COUNT }, (_, i) => {

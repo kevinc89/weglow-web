@@ -3,16 +3,22 @@ export const featureCards = [
     title: "Workouts",
     body: "Strength, pilates, yoga, barre, cardio & meditation. Built by real trainers.",
     emoji: "🏋️‍♀️",
+    bg: "#fde8e5",
+    accent: "#db4927",
   },
   {
     title: "Nutrition",
     body: "Dietician-approved recipes and meal plans that fit your life. Nothing off limits.",
     emoji: "🥗",
+    bg: "#eaf0ff",
+    accent: "#2d62ff",
   },
   {
     title: "Community",
     body: "Challenges, guides, and a community that keeps you accountable.",
     emoji: "💛",
+    bg: "#fbe8f7",
+    accent: "#dd23bb",
   },
 ];
 

@@ -16,11 +16,20 @@ export function FeatureGrid() {
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
         {featureCards.map((card, i) => (
           <Reveal key={card.title} delay={i * 100}>
-            <div className="group h-full rounded-2xl bg-[#f8f8f8] p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-xl">
-              <span className="inline-block text-3xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
+            <div
+              className="group h-full rounded-3xl p-7 text-center shadow-lg shadow-[#222]/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              style={{ backgroundColor: card.bg }}
+            >
+              <span
+                className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                aria-hidden
+              >
                 {card.emoji}
               </span>
-              <p className="mt-3 font-[var(--font-nohemi)] text-lg font-bold text-[#222]">
+              <p
+                className="mt-4 font-[var(--font-nohemi)] text-xl font-extrabold"
+                style={{ color: card.accent }}
+              >
                 {card.title}
               </p>
               <p className="mt-2 text-sm text-[#444]">{card.body}</p>
