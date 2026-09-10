@@ -2,7 +2,9 @@ import Image from "next/image";
 import { REFERRAL_PLAN } from "../pricing";
 import { CheckoutButton } from "./CheckoutButton";
 
-export function Hero() {
+export function Hero({ referrerName }: { referrerName: string | null }) {
+  const friendLabel = referrerName ?? "Your friend";
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#fde8e5] via-[#fdf1ef] to-[#eef1ff]">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 pt-16 pb-20 md:grid-cols-2 md:pt-24 md:pb-28">
@@ -12,7 +14,7 @@ export function Hero() {
           </span>
 
           <h1 className="mt-5 font-[var(--font-nohemi)] text-4xl font-extrabold leading-[1.05] tracking-tight text-[#222] sm:text-5xl md:text-6xl">
-            Your friend called it.{" "}
+            {friendLabel} called it.{" "}
             <span className="font-[var(--font-fraunces)] italic text-[#db4927]">
               You&apos;re going to love
             </span>{" "}
@@ -45,30 +47,6 @@ export function Hero() {
               priority
               className="h-auto w-full object-cover"
             />
-          </div>
-
-          <div className="absolute -top-4 -left-3 z-10 w-36 -rotate-6 rounded-2xl bg-white p-3 shadow-xl transition-transform duration-500 hover:rotate-0 sm:-top-6 sm:-left-8 sm:w-44 sm:p-4">
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#db4927]/10 text-sm sm:h-8 sm:w-8">
-                💌
-              </span>
-              <p className="text-[11px] font-bold text-[#222] sm:text-xs">
-                Maddie sent you a link
-              </p>
-            </div>
-            <p className="mt-2 rounded-lg bg-[#f8f8f8] p-2 text-[10px] leading-snug text-[#444] sm:text-xs">
-              &ldquo;You need this app, trust me.&rdquo;
-            </p>
-          </div>
-
-          <div className="absolute -right-3 -bottom-4 z-10 rotate-3 rounded-2xl bg-[#222] px-4 py-3 text-white shadow-xl transition-transform duration-500 hover:rotate-0 sm:-right-8 sm:-bottom-6">
-            <p className="text-[10px] text-white/60 sm:text-xs">Your price</p>
-            <p className="font-[var(--font-nohemi)] text-lg font-extrabold sm:text-xl">
-              ${REFERRAL_PLAN.price}
-              <span className="text-xs font-normal text-white/60">
-                /{REFERRAL_PLAN.interval}
-              </span>
-            </p>
           </div>
         </div>
       </div>
