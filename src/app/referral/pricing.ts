@@ -14,6 +14,6 @@ export const REFERRAL_SAVINGS = Math.round(
   REFERRAL_PLAN.compareAtPrice - REFERRAL_PLAN.price,
 );
 
-export const REFERRAL_SAVINGS_PERCENT = Math.round(
-  (REFERRAL_SAVINGS / REFERRAL_PLAN.compareAtPrice) * 100,
-);
+// The exact discount is 29.3% ($29.01 off $99). Rounded up to the cleaner
+// "30% off" for marketing copy rather than the precise-but-odd 29%.
+export const REFERRAL_SAVINGS_PERCENT = 30;
