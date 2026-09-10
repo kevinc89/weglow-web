@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { AD_ATTRIBUTION_KEYS } from "@/lib/attribution";
-import { REFERRAL_PLAN } from "@/app/referral/pricing";
+import {
+  REFERRAL_PLAN,
+  REFERRAL_PRICE_ID,
+  REFERRAL_PROMOTION_CODE_ID,
+} from "@/app/referral/pricing";
 
 // Stripe truncates metadata values at 500 characters anyway — trim ourselves so
 // what we log matches what actually lands on the session/subscription.
@@ -40,17 +44,8 @@ export async function POST(request: NextRequest) {
 
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: "subscription",
-      line_items: [
-        {
-          price_data: {
-            currency: REFERRAL_PLAN.currency,
-            unit_amount: Math.round(REFERRAL_PLAN.price * 100),
-            recurring: { interval: REFERRAL_PLAN.interval },
-            product_data: { name: `${REFERRAL_PLAN.name} — Referral Offer` },
-          },
-          quantity: 1,
-        },
-      ],
+      line_items: [{ price: REFERRAL_PRICE_ID, quantity: 1 }],
+      discounts: [{ promotion_code: REFERRAL_PROMOTION_CODE_ID }],
       success_url: `${origin}/get-strong/success?utm_source=web&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/referral?utm_source=web`,
       metadata,
