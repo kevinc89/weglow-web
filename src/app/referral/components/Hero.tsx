@@ -8,13 +8,13 @@ export function Hero({ referrerName }: { referrerName: string | null }) {
   return (
     <section className="relative flex h-[560px] w-full items-end overflow-hidden sm:h-[640px] md:h-[80vh] md:max-h-[760px]">
       <Image
-        src="/manage/photos/gym-strength.jpg"
-        alt="A WEGLOW member training on the strength rack"
+        src="/manage/photos/referral-hero.jpg"
+        alt="A WEGLOW member finishing a workout in a sunlit studio"
         fill
         priority
         sizes="100vw"
         className="object-cover"
-        style={{ objectPosition: "50% 38%" }}
+        style={{ objectPosition: "50% 42%" }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
 
