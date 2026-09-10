@@ -31,6 +31,7 @@ export function Pricing() {
                 fill
                 sizes="(min-width: 640px) 512px, 100vw"
                 className="object-cover"
+                style={{ objectPosition: "50% 8%" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
 
