@@ -12,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
   --animate-fade-in-up: fade-in-up 0.4s ease-out;
   --animate-pop-in: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-confetti-fall: confetti-fall 1s ease-out forwards;
 }
 
 @keyframes fade-in-up {
@@ -33,6 +34,17 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--confetti-x, 0px), 160px) rotate(var(--confetti-rot, 180deg));
+    opacity: 0;
   }
 }
 

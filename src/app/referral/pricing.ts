@@ -1,4 +1,4 @@
-// Canonical numbers for the referral offer — imported by both the checkout
+// Canonical numbers for the referral offer. Imported by both the checkout
 // route (what Stripe actually charges) and the page (what we display), so
 // the two can never drift apart.
 export const REFERRAL_PLAN = {

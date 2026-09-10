@@ -4,6 +4,7 @@ import { useState } from "react";
 import { track } from "@/lib/analytics";
 import { getAdAttribution } from "@/lib/attribution";
 import { trackPixel } from "@/lib/metaPixel";
+import { Confetti, makeConfettiBurst, type ConfettiPiece } from "./Confetti";
 
 export function CheckoutButton({
   className,
@@ -13,8 +14,12 @@ export function CheckoutButton({
   children: React.ReactNode;
 }) {
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [burstKey, setBurstKey] = useState(0);
+  const [pieces, setPieces] = useState<ConfettiPiece[]>([]);
 
   const handleClick = async () => {
+    setPieces(makeConfettiBurst());
+    setBurstKey((k) => k + 1);
     setStatus("loading");
     track("Referral Checkout Started");
     trackPixel("InitiateCheckout");
@@ -42,7 +47,8 @@ export function CheckoutButton({
   };
 
   return (
-    <>
+    <div className="relative">
+      <Confetti burstKey={burstKey} pieces={pieces} />
       <button
         type="button"
         onClick={handleClick}
@@ -53,9 +59,9 @@ export function CheckoutButton({
       </button>
       {status === "error" ? (
         <p className="mt-2 text-sm text-[#db4927]">
-          Checkout isn&apos;t available yet — please check back soon.
+          Checkout isn&apos;t available yet. Please check back soon!
         </p>
       ) : null}
-    </>
+    </div>
   );
 }
