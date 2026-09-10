@@ -1,6 +1,5 @@
-import { testimonials, resultsStat } from "@/lib/brand";
+import { testimonials } from "@/lib/brand";
 import { Reveal } from "./Reveal";
-import { CountUp } from "./CountUp";
 
 export function Testimonials() {
   return (
@@ -9,9 +8,7 @@ export function Testimonials() {
         <h2 className="font-[var(--font-nohemi)] text-3xl font-extrabold text-[#222] sm:text-4xl">
           Your friend isn&apos;t the only one glowing
         </h2>
-        <p className="mt-3 text-lg text-[#444]">
-          <CountUp end={300} suffix="k+" duration={1400} /> {resultsStat.body}
-        </p>
+        <p className="mt-3 text-lg text-[#444]">Real women. Real results.</p>
       </Reveal>
 
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">

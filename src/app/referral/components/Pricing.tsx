@@ -71,12 +71,9 @@ export function Pricing() {
               ))}
             </ul>
 
-            <div className="relative mt-7">
-              <span className="absolute inset-0 animate-ping rounded-full bg-[#db4927]/40" />
-              <CheckoutButton className="relative block w-full rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-                Start your free trial
-              </CheckoutButton>
-            </div>
+            <CheckoutButton className="mt-7 block w-full rounded-full bg-[#db4927] px-8 py-4 text-center font-[var(--font-nohemi)] text-lg font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]">
+              Start your free trial
+            </CheckoutButton>
             <p className="mt-3 text-center text-xs text-[#444]">
               {REFERRAL_PLAN.trialDays} days free, then $
               {REFERRAL_PLAN.price}/{REFERRAL_PLAN.interval}, billed
