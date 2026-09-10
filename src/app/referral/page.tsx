@@ -8,7 +8,6 @@ import { Testimonials } from "./components/Testimonials";
 import { FAQ } from "./components/FAQ";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
-import { StickyCTA } from "./components/StickyCTA";
 
 const MAX_REFERRER_NAME_LENGTH = 40;
 
@@ -44,7 +43,6 @@ export default async function ReferralPage({
       <FAQ />
       <FinalCTA />
       <Footer />
-      <StickyCTA />
     </>
   );
 }
