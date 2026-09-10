@@ -1,5 +1,5 @@
 // The actual Stripe objects the checkout route charges against.
-export const REFERRAL_PRICE_ID = "price_1OQowIH2dDlVzL9wFptG3mXa";
+export const REFERRAL_PRICE_ID = "price_1OXlStH2dDlVzL9w3Y6w7Cui";
 export const REFERRAL_PROMOTION_CODE_ID = "promo_1TWzSrH2dDlVzL9wnma1YSsG";
 
 // Canonical numbers for the referral offer. Imported by both the checkout
