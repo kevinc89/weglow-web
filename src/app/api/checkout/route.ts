@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { geolocation } from "@vercel/functions";
 import Stripe from "stripe";
 import { AD_ATTRIBUTION_KEYS } from "@/lib/attribution";
-import { PLAN_COUPON_ID, PLAN_PRICE_ID } from "@/lib/planPricing";
+import { PLAN_COUPON_ID } from "@/lib/planPricing";
+import { getPriceIdForCountry } from "@/lib/currencyPricing";
 
 // Stripe truncates metadata values at 500 characters anyway — trim ourselves so
 // what we log matches what actually lands on the session/subscription.
@@ -54,9 +56,12 @@ export async function POST(request: NextRequest) {
   try {
     const stripe = new Stripe(secretKey);
 
+    const { country } = geolocation(request);
+    const priceId = getPriceIdForCountry(country);
+
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: "subscription",
-      line_items: [{ price: PLAN_PRICE_ID, quantity: 1 }],
+      line_items: [{ price: priceId, quantity: 1 }],
       discounts: [{ coupon: PLAN_COUPON_ID }],
       success_url: `${origin}/get-strong/success?utm_source=web&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/get-strong?utm_source=web`,
