@@ -49,16 +49,18 @@ export function FullOffer({
         }}
       />
 
-      <div className="relative z-[2] flex flex-wrap items-center justify-between gap-3 bg-[#db4927] px-4 py-2.5 text-white sm:px-8">
-        <div className="flex items-center gap-2 text-[13.5px] font-extrabold tracking-wide uppercase">
-          <span className="h-2 w-2 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-white" />
-          Summer Sale · 50% off ends in
-          <span className="rounded-full bg-[#222] px-2.5 py-0.5 font-mono text-[13px] font-bold tabular-nums tracking-wide">
-            {active && remaining !== null ? formatCountdown(remaining) : "00:00:00"}
-          </span>
-        </div>
-        <div className="text-[13px] font-bold opacity-95">
-          {resultsStat.headline} women already joined
+      <div className="relative z-[2] px-3 pt-3 sm:px-6 sm:pt-5">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-2xl bg-[#db4927] px-4 py-2.5 text-white shadow-lg shadow-[#222]/15 sm:px-6">
+          <div className="flex items-center gap-2 text-[13.5px] font-extrabold tracking-wide uppercase">
+            <span className="h-2 w-2 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-white" />
+            Summer Sale · 50% off ends in
+            <span className="rounded-full bg-[#222] px-2.5 py-0.5 font-mono text-[13px] font-bold tabular-nums tracking-wide">
+              {active && remaining !== null ? formatCountdown(remaining) : "00:00:00"}
+            </span>
+          </div>
+          <div className="text-[13px] font-bold opacity-95">
+            {resultsStat.headline} women already joined
+          </div>
         </div>
       </div>
 
@@ -72,7 +74,7 @@ export function FullOffer({
             <span className="text-[#db4927]">half price.</span>
           </h1>
 
-          <p className="max-w-[42ch] text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.45] text-[#444]">
+          <p className="max-w-[42ch] text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.45] font-medium text-[#222] [text-shadow:0_1px_16px_rgba(255,255,255,0.95),0_1px_3px_rgba(255,255,255,0.9)]">
             1,000+ workouts, 20+ plans, recipes and a planner — built for
             women&apos;s bodies, led by Stef Williams and 6 specialized
             coaches.
