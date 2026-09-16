@@ -1,10 +1,11 @@
-import { Offer } from "./components/Offer";
+import { OfferPanel } from "./components/OfferPanel";
+import { CampaignVisual } from "./components/CampaignVisual";
 import { getPlanPricing } from "@/lib/planPricing";
 
 const MAX_PROMO_CODE_LENGTH = 40;
 
 // Mirrors join.weglow.app's ?code=<promo> entry point — read the code off the
-// URL so the badge and price card can visibly confirm it's applied.
+// URL so the confirmation box can show the exact code that was applied.
 function getPromoCode(raw: string | string[] | undefined): string | null {
   const value = Array.isArray(raw) ? raw[0] : raw;
   if (!value) return null;
@@ -21,5 +22,10 @@ export default async function StartTodayPage({
   const promoCode = getPromoCode(params.code);
   const pricing = await getPlanPricing();
 
-  return <Offer pricing={pricing} promoCode={promoCode} />;
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      <OfferPanel pricing={pricing} promoCode={promoCode} />
+      <CampaignVisual />
+    </div>
+  );
 }
