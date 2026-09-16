@@ -50,15 +50,17 @@ export function FullOffer({
       />
 
       <div className="relative z-[2] px-3 pt-3 sm:px-6 sm:pt-5">
-        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-2xl bg-[#db4927] px-4 py-2.5 text-white shadow-lg shadow-[#222]/15 sm:px-6">
-          <div className="flex items-center gap-2 text-[13.5px] font-extrabold tracking-wide uppercase">
-            <span className="h-2 w-2 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-white" />
-            Summer Sale · 50% off ends in
-            <span className="rounded-full bg-[#222] px-2.5 py-0.5 font-mono text-[13px] font-bold tabular-nums tracking-wide">
+        <div className="flex flex-col gap-1.5 rounded-2xl bg-[#db4927] px-4 py-2.5 text-white shadow-lg shadow-[#222]/15 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-4 sm:gap-y-1 sm:px-6">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+            <span className="flex items-center gap-2 text-[13px] font-extrabold whitespace-nowrap uppercase sm:text-[13.5px] sm:tracking-wide">
+              <span className="h-2 w-2 shrink-0 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-white" />
+              Summer Sale · 50% off<span className="hidden sm:inline"> ends in</span>
+            </span>
+            <span className="shrink-0 rounded-full bg-[#222] px-2.5 py-0.5 font-mono text-[13px] font-bold tabular-nums tracking-wide">
               {active && remaining !== null ? formatCountdown(remaining) : "00:00:00"}
             </span>
           </div>
-          <div className="text-[13px] font-bold opacity-95">
+          <div className="text-[12.5px] font-bold opacity-95 sm:text-[13px]">
             {resultsStat.headline} women already joined
           </div>
         </div>
