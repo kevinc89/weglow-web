@@ -28,7 +28,7 @@ export function CampaignVisual() {
           Invest in your body
         </p>
         <h2 className="mt-2 font-[var(--font-nohemi)] text-[clamp(2.75rem,5.6vw,5.25rem)] leading-[0.92] font-extrabold text-white [text-shadow:0_6px_24px_rgba(34,34,34,0.35)]">
-          MID-YEAR
+          SUMMER
           <br />
           SALE
         </h2>

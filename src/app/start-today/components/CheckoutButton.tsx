@@ -10,6 +10,8 @@ export function CheckoutButton({
   children,
   promoCode,
   placement,
+  value,
+  currency,
 }: {
   className?: string;
   children: React.ReactNode;
@@ -20,6 +22,12 @@ export function CheckoutButton({
   /** Which spot on the page this button lives in (hero, offer bar, final CTA,
    * ...) so CTA performance can be compared placement-by-placement in Amplitude. */
   placement: string;
+  /** Discounted price shown on the page at click time. Unlike try-now's
+   * pre-pricing hero button, every CTA here already knows the real price, so
+   * we pass it to Meta's InitiateCheckout (as get-strong's PurchaseScreen
+   * does) instead of firing the event bare — better signal for ad optimization. */
+  value?: number;
+  currency?: string;
 }) {
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
 
@@ -29,7 +37,10 @@ export function CheckoutButton({
       Placement: placement,
       ...(promoCode ? { "Promo Code": promoCode } : {}),
     });
-    trackPixel("InitiateCheckout");
+    trackPixel("InitiateCheckout", {
+      ...(value != null ? { value } : {}),
+      currency: (currency ?? "usd").toUpperCase(),
+    });
     try {
       const res = await fetch("/api/start-today-checkout", {
         method: "POST",

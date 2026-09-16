@@ -68,7 +68,7 @@ export function OfferPanel({
         </span>
 
         <h1 className="font-[var(--font-nohemi)] text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[0.98] font-extrabold tracking-tight text-[#222] text-balance">
-          Mid-Year Sale:
+          Summer Sale:
           <br />
           <span className="text-[#db4927]">Save {savePercent}</span>
         </h1>
@@ -131,6 +131,8 @@ export function OfferPanel({
         <CheckoutButton
           placement="offer_panel"
           promoCode={promoCode}
+          value={discountedAmount}
+          currency={pricing?.currency}
           className="relative mt-6 block w-full overflow-hidden rounded-full bg-[#db4927] px-6 py-4 text-center font-[var(--font-nohemi)] text-lg font-extrabold text-white shadow-lg shadow-[#db4927]/30 transition-colors hover:bg-[#b93a1c] active:bg-[#8c2c14]"
         >
           <span className="relative z-10">
