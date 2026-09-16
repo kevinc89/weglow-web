@@ -5,7 +5,7 @@ import { Logo } from "@/components/Logo";
 import { plan, purchaseStat, resultsStat } from "@/lib/brand";
 import type { PlanPricing } from "@/lib/planPricing";
 import { trustChips } from "../data";
-import { useOfferCountdown, formatCountdown } from "../useOfferCountdown";
+import { useOfferCountdown, formatCountdown } from "@/lib/useOfferCountdown";
 import { CheckIcon, ShieldIcon, RefreshIcon, LockIcon } from "./icons";
 import { CheckoutButton } from "./CheckoutButton";
 

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { testimonials } from "@/lib/brand";
-import { useOfferCountdown, formatCountdown } from "../useOfferCountdown";
+import { useOfferCountdown, formatCountdown } from "@/lib/useOfferCountdown";
 import { StarIcon } from "./icons";
 
 const featuredTestimonial = testimonials[3]; // "Workouts completely work! 🔥" — Maria

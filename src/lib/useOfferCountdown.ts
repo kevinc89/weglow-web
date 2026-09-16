@@ -31,10 +31,11 @@ export function formatCountdown(ms: number): string {
   return [hours, minutes, seconds].map((n) => String(n).padStart(2, "0")).join(":");
 }
 
-/** Session-scoped countdown for the /start-today offer: the deadline is set
- * once per browser session (persisted in sessionStorage) rather than reset on
- * every render, so it reflects a real "this visit" window instead of an
- * infinitely-resetting fake timer. */
+/** Session-scoped countdown for the summer-sale offer pages (/start-today,
+ * /start-today-full, ...): the deadline is set once per browser session
+ * (persisted in sessionStorage, shared across those pages by design — one
+ * consistent "reserved offer" window per visit rather than a fresh timer per
+ * page) instead of resetting on every render or every page load. */
 export function useOfferCountdown() {
   const [remaining, setRemaining] = useState<number | null>(null);
 
