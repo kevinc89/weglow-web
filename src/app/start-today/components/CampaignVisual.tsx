@@ -13,8 +13,8 @@ export function CampaignVisual() {
   return (
     <div className="relative hidden min-h-dvh overflow-hidden bg-[#f4876a] lg:block">
       <Image
-        src="/try-now/photos/mirror-selfie.jpg"
-        alt="A confident WEGLOW member finishing a strength workout"
+        src="/start-today/photos/hero.jpg"
+        alt="A confident WEGLOW member kneeling on a mat between sets"
         fill
         priority
         sizes="50vw"

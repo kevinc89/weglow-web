@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Logo } from "@/components/Logo";
 import { plan, purchaseStat, resultsStat } from "@/lib/brand";
 import type { PlanPricing } from "@/lib/planPricing";
@@ -7,6 +8,16 @@ import { trustChips } from "../data";
 import { useOfferCountdown, formatCountdown } from "../useOfferCountdown";
 import { CheckIcon, ShieldIcon, RefreshIcon, LockIcon } from "./icons";
 import { CheckoutButton } from "./CheckoutButton";
+
+// Real WEGLOW trainers (Colby, Mara, Anna — see `trainers` in try-now/data.ts)
+// plus one member photo, standing in for the avatar stack instead of flat
+// placeholder circles.
+const AVATARS = [
+  { src: "/start-today/photos/avatars/colby.jpg", alt: "Colby, WEGLOW trainer" },
+  { src: "/start-today/photos/avatars/mara.jpg", alt: "Mara, WEGLOW trainer" },
+  { src: "/start-today/photos/avatars/anna.jpg", alt: "Anna, WEGLOW trainer" },
+  { src: "/start-today/photos/avatars/member.jpg", alt: "A WEGLOW member" },
+];
 
 function formatAmount(amount: number): string {
   return amount.toFixed(2);
@@ -146,12 +157,14 @@ export function OfferPanel({
 
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center">
-          {["#ffbcae", "#f4876a", "#db4927", "#8c2c14"].map((color, index) => (
+          {AVATARS.map(({ src, alt }, index) => (
             <span
-              key={color}
-              style={{ background: color, marginLeft: index === 0 ? 0 : -11 }}
-              className="h-9 w-9 rounded-full shadow-[0_0_0_3px_#fff]"
-            />
+              key={src}
+              style={{ marginLeft: index === 0 ? 0 : -11 }}
+              className="relative h-9 w-9 overflow-hidden rounded-full shadow-[0_0_0_3px_#fff]"
+            >
+              <Image src={src} alt={alt} fill sizes="36px" className="object-cover" />
+            </span>
           ))}
         </div>
         <div className="flex flex-col gap-0.5">
