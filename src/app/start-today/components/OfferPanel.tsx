@@ -1,42 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
-import { plan, purchaseStat, stat } from "@/lib/brand";
+import { plan, purchaseStat, resultsStat } from "@/lib/brand";
 import type { PlanPricing } from "@/lib/planPricing";
-import { benefits } from "../data";
+import { trustChips } from "../data";
+import { useOfferCountdown, formatCountdown } from "../useOfferCountdown";
+import { CheckIcon, ShieldIcon, RefreshIcon, LockIcon } from "./icons";
 import { CheckoutButton } from "./CheckoutButton";
 
-const OFFER_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-const STORAGE_KEY = "weglow_start_today_deadline";
-
-function readDeadline(): number {
-  if (typeof window === "undefined") return Date.now() + OFFER_WINDOW_MS;
-  try {
-    const stored = window.sessionStorage.getItem(STORAGE_KEY);
-    const parsed = stored ? Number(stored) : NaN;
-    if (Number.isFinite(parsed) && parsed > Date.now()) return parsed;
-  } catch {
-    // sessionStorage unavailable — fall through to a fresh deadline.
-  }
-  const deadline = Date.now() + OFFER_WINDOW_MS;
-  try {
-    window.sessionStorage.setItem(STORAGE_KEY, String(deadline));
-  } catch {
-    // Nothing to persist to — the timer just won't survive a refresh.
-  }
-  return deadline;
-}
-
-function formatRemaining(ms: number): string {
-  const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${String(seconds).padStart(2, "0")}`;
-}
-
 function formatAmount(amount: number): string {
-  return Number.isInteger(amount) ? String(amount) : amount.toFixed(2);
+  return amount.toFixed(2);
+}
+
+// "50% OFF" -> "50%". Falls back to the raw label if it isn't shaped that way.
+function toSavePercent(discountLabel: string): string {
+  const match = discountLabel.match(/(\d+%)/);
+  return match ? match[1] : discountLabel;
 }
 
 export function OfferPanel({
@@ -46,125 +25,146 @@ export function OfferPanel({
   pricing: PlanPricing | null;
   promoCode: string | null;
 }) {
-  const [remaining, setRemaining] = useState<number | null>(null);
-
-  useEffect(() => {
-    const deadline = readDeadline();
-    const tick = () => setRemaining(deadline - Date.now());
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const { remaining, active } = useOfferCountdown();
 
   const originalAmount = pricing?.originalAmount ?? plan.compareAtPrice;
   const discountedAmount = pricing?.discountedAmount ?? plan.price;
-  const interval = pricing?.interval ?? plan.interval;
   const discountLabel = pricing?.discountLabel ?? "50% OFF";
-  const monthlyEquivalent = interval === "year" ? discountedAmount / 12 : discountedAmount;
-  const showCountdown = remaining !== null && remaining > 0;
+  const savePercent = toSavePercent(discountLabel);
+  const monthlyOriginal = originalAmount / 12;
+  const monthlyDiscounted = discountedAmount / 12;
+  const monthsFree = Math.max(0, Math.round((originalAmount - discountedAmount) / monthlyOriginal));
 
   return (
-    <div className="flex min-h-dvh flex-col justify-center gap-5 px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
-      <div className="flex items-center justify-between">
+    <div className="flex min-h-dvh flex-col justify-center gap-6 px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <Logo />
-        {showCountdown ? (
-          <span className="rounded-full bg-[#fde8e5] px-3 py-1 font-mono text-xs font-bold tabular-nums text-[#db4927]">
-            ⏱ {formatRemaining(remaining)}
+        <div className="flex items-center gap-2 rounded-full bg-[#222] py-2 pr-4 pl-3.5 text-white shadow-sm">
+          <span className="h-2 w-2 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-[#ffb199]" />
+          <span className="text-[11px] font-bold tracking-[0.09em] text-white/80 uppercase">
+            Offer ends in
           </span>
-        ) : null}
+          <span className="font-mono text-sm font-extrabold tabular-nums tracking-wide">
+            {active && remaining !== null ? formatCountdown(remaining) : "00:00:00"}
+          </span>
+        </div>
       </div>
 
-      <div>
-        <p className="font-[var(--font-nohemi)] text-2xl font-extrabold text-[#222] sm:text-3xl">
-          Mid-Year Sale:{" "}
-          <span className="italic text-[#db4927]">{discountLabel}</span>
+      <div className="flex flex-col gap-3">
+        <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#f0fbf4] px-3.5 py-1.5 text-xs font-extrabold tracking-wide text-[#1a7a41] uppercase">
+          <CheckIcon />
+          {promoCode ? `${promoCode.toUpperCase()} applied` : "Discount applied"}
+        </span>
+
+        <h1 className="font-[var(--font-nohemi)] text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[0.98] font-extrabold tracking-tight text-[#222] text-balance">
+          Mid-Year Sale:
+          <br />
+          <span className="text-[#db4927]">Save {savePercent}</span>
+        </h1>
+
+        <p className="max-w-[46ch] text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.45] text-[#444]">
+          Personalized workouts, nutrition, and coaching built for your
+          body — for less than a coffee a month. Your discounted price is
+          reserved for this visit.
         </p>
       </div>
 
-      <ul className="space-y-2.5">
-        {benefits.map((benefit) => (
-          <li key={benefit} className="flex items-start gap-2.5 text-[#222]">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 14 14"
-              fill="none"
-              className="mt-1 shrink-0 text-[#db4927]"
-            >
-              <path
-                d="M2.5 7L5.5 10L11.5 3.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="text-sm sm:text-base">{benefit}</span>
-          </li>
+      <div className="flex flex-wrap gap-2">
+        {trustChips.map((chip) => (
+          <span
+            key={chip}
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#222]/10 bg-[#f8f8f8] px-3.5 py-1.5 text-sm font-semibold text-[#222]"
+          >
+            <CheckIcon className="text-[#db4927]" />
+            {chip}
+          </span>
         ))}
-      </ul>
-
-      <div className="flex items-center gap-3 rounded-xl bg-[#f0fbf4] px-4 py-3">
-        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#22a559] text-white">
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M2.5 7L5.5 10L11.5 3.5"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-        <div className="text-sm">
-          <p className="font-[var(--font-nohemi)] font-bold text-[#222]">
-            {promoCode ? promoCode.toUpperCase() : discountLabel}
-          </p>
-          <p className="text-[#444]">Discount applied</p>
-        </div>
       </div>
 
-      <div className="rounded-2xl border-2 border-[#db4927] p-5">
-        <div className="mb-2 inline-block rounded-full bg-[#db4927] px-3 py-1 text-xs font-bold text-white">
-          BEST VALUE
-        </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-[var(--font-nohemi)] text-lg font-bold text-[#222]">
+      <div className="relative rounded-[1.75rem] border-2 border-[#db4927] bg-[#f8f8f8] p-6 shadow-lg shadow-[#222]/10">
+        <span className="absolute -top-3.5 left-6 rounded-full bg-[#db4927] px-3.5 py-1.5 text-[11px] font-extrabold tracking-[0.1em] text-white uppercase shadow-sm">
+          Best value · {savePercent} off
+        </span>
+
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div className="flex flex-col gap-1">
+            <div className="font-[var(--font-nohemi)] text-[clamp(1.5rem,2vw,2rem)] leading-none font-extrabold text-[#222]">
               Yearly
-            </p>
-            <p className="text-xs text-[#444]">
-              ${originalAmount.toFixed(2)}{" "}
-              <span className="text-[#db4927]">${formatAmount(discountedAmount)}</span>{" "}
-              billed yearly. Cancel anytime.
-            </p>
+            </div>
+            <div className="text-sm text-[#444]">
+              <s className="opacity-60">${formatAmount(originalAmount)}</s>{" "}
+              <strong className="text-[#222]">
+                ${formatAmount(discountedAmount)} billed yearly
+              </strong>
+            </div>
+            {monthsFree > 0 ? (
+              <div className="text-[13.5px] font-bold text-[#1a7a41]">
+                You keep ${formatAmount(originalAmount - discountedAmount)} — that&apos;s{" "}
+                {monthsFree} month{monthsFree === 1 ? "" : "s"} free
+              </div>
+            ) : null}
           </div>
-          <div className="text-right">
-            <p className="text-sm text-[#444] line-through">
-              ${originalAmount.toFixed(2)}
-            </p>
-            <p className="font-[var(--font-nohemi)] text-2xl font-extrabold text-[#222]">
-              ${formatAmount(monthlyEquivalent)}
-              <span className="text-sm font-normal text-[#444]">/mo</span>
-            </p>
+          <div className="text-right leading-none">
+            <div className="text-sm text-[#444]">
+              <s>${formatAmount(monthlyOriginal)}</s> monthly
+            </div>
+            <div className="mt-1 flex items-baseline justify-end gap-1">
+              <span className="font-[var(--font-nohemi)] text-[clamp(2.375rem,4vw,3.25rem)] leading-[0.9] font-extrabold text-[#db4927]">
+                ${formatAmount(monthlyDiscounted)}
+              </span>
+              <span className="text-sm font-bold text-[#444]">/mo</span>
+            </div>
           </div>
         </div>
+
         <CheckoutButton
           placement="offer_panel"
           promoCode={promoCode}
-          className="mt-4 block w-full rounded-full bg-[#db4927] px-6 py-3.5 text-center font-[var(--font-nohemi)] text-base font-bold text-white shadow-lg shadow-[#db4927]/30 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          className="relative mt-6 block w-full overflow-hidden rounded-full bg-[#db4927] px-6 py-4 text-center font-[var(--font-nohemi)] text-lg font-extrabold text-white shadow-lg shadow-[#db4927]/30 transition-colors hover:bg-[#b93a1c] active:bg-[#8c2c14]"
         >
-          Continue
+          <span className="relative z-10">
+            Claim {savePercent} off — ${formatAmount(discountedAmount)}/yr
+          </span>
+          <span
+            aria-hidden
+            className="absolute inset-y-0 left-0 w-1/3 animate-[button-sheen_3.4s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/35 to-transparent"
+          />
         </CheckoutButton>
-        <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-[#444]">
-          <span aria-hidden>🛡️</span> 30-day money-back guarantee — not right
-          for you, get a full refund.
-        </p>
+
+        <div className="mt-3 flex flex-wrap justify-center gap-4 text-[13px] text-[#444]">
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldIcon className="text-[#1a7a41]" /> 30-day money back
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <RefreshIcon className="text-[#1a7a41]" /> Cancel anytime
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <LockIcon className="text-[#1a7a41]" /> Secure checkout
+          </span>
+        </div>
       </div>
 
-      <p className="text-xs text-[#444]">
-        ⭐ {purchaseStat.headline} App Store rating · {stat.headline} {stat.body}
-      </p>
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="flex items-center">
+          {["#ffbcae", "#f4876a", "#db4927", "#8c2c14"].map((color, index) => (
+            <span
+              key={color}
+              style={{ background: color, marginLeft: index === 0 ? 0 : -11 }}
+              className="h-9 w-9 rounded-full shadow-[0_0_0_3px_#fff]"
+            />
+          ))}
+        </div>
+        <div className="flex flex-col gap-0.5">
+          <div className="flex items-center gap-1.5 text-sm font-bold text-[#222]">
+            <span className="h-1.5 w-1.5 animate-[soft-pulse_1.8s_ease-in-out_infinite] rounded-full bg-[#db4927]" />
+            Loved by women worldwide
+          </div>
+          <div className="text-[13px] text-[#444]">
+            {resultsStat.headline} {resultsStat.body} · {purchaseStat.headline}{" "}
+            on the App Store
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
