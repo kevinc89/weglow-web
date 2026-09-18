@@ -63,7 +63,7 @@ export function OfferPanel({
       </div>
 
       <div className="flex flex-col gap-3">
-        <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#f0fbf4] px-3.5 py-1.5 text-xs font-extrabold tracking-wide text-[#1a7a41] uppercase">
+        <span className="hidden w-fit items-center gap-2 rounded-full bg-[#f0fbf4] px-3.5 py-1.5 text-xs font-extrabold tracking-wide text-[#1a7a41] uppercase lg:inline-flex">
           <CheckIcon />
           {promoCode ? `${promoCode.toUpperCase()} applied` : "Discount applied"}
         </span>
