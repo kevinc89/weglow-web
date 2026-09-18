@@ -87,7 +87,7 @@ export const testimonials = [
 
 export const plan = {
   name: "WeGlow Annual Plan",
-  compareAtPrice: 99,
+  compareAtPrice: 99.99,
   price: 49.99,
   interval: "year" as const,
   features: [

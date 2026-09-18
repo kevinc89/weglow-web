@@ -40,6 +40,7 @@ export function OfferPanel({
 
   const originalAmount = pricing?.originalAmount ?? plan.compareAtPrice;
   const discountedAmount = pricing?.discountedAmount ?? plan.price;
+  const interval = pricing?.interval ?? plan.interval;
   const discountLabel = pricing?.discountLabel ?? "50% OFF";
   const savePercent = toSavePercent(discountLabel);
   const monthlyOriginal = originalAmount / 12;
@@ -68,7 +69,7 @@ export function OfferPanel({
         </span>
 
         <h1 className="font-[var(--font-nohemi)] text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[0.98] font-extrabold tracking-tight text-[#222] text-balance">
-          Summer Sale:
+          Limited-Time Offer:
           <br />
           <span className="text-[#db4927]">Save {savePercent}</span>
         </h1>
@@ -155,6 +156,10 @@ export function OfferPanel({
             <LockIcon className="text-[#1a7a41]" /> Secure checkout
           </span>
         </div>
+
+        <p className="mt-3 text-center text-[12.5px] text-[#666]">
+          Renews at ${formatAmount(originalAmount)}/{interval} after the first year
+        </p>
       </div>
 
       <div className="flex flex-wrap items-center gap-4">

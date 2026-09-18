@@ -37,6 +37,7 @@ export function FullOffer({
         alt="A WEGLOW member holding a side plank in a bright studio"
         fill
         priority
+        quality={90}
         sizes="100vw"
         className="object-cover"
         style={{ objectPosition: "65% 35%" }}
@@ -54,7 +55,7 @@ export function FullOffer({
           <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
             <span className="flex items-center gap-2 text-[13px] font-extrabold whitespace-nowrap uppercase sm:text-[13.5px] sm:tracking-wide">
               <span className="h-2 w-2 shrink-0 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-white" />
-              Summer Sale · 50% off<span className="hidden sm:inline"> ends in</span>
+              Limited-Time Offer · 50% off<span className="hidden sm:inline"> ends in</span>
             </span>
             <span className="shrink-0 rounded-full bg-[#222] px-2.5 py-0.5 font-mono text-[13px] font-bold tabular-nums tracking-wide">
               {active && remaining !== null ? formatCountdown(remaining) : "00:00:00"}
