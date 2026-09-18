@@ -29,13 +29,13 @@ export function CampaignVisual() {
           Invest in your body
         </p>
         <h2 className="mt-0 font-[var(--font-nohemi)] text-[clamp(2rem,7vw,2.75rem)] leading-[0.92] font-extrabold text-white [text-shadow:0_6px_24px_rgba(34,34,34,0.35)] sm:mt-2 lg:text-[clamp(2.75rem,5.6vw,5.25rem)]">
-          LIMITED
+          GLOW
           <br />
-          TIME
+          UP
         </h2>
       </div>
 
-      <div className="absolute right-6 bottom-6 left-6 flex flex-wrap items-end justify-end gap-3 sm:justify-between xl:right-7 xl:bottom-7 xl:left-7">
+      <div className="absolute right-6 bottom-6 left-6 flex flex-wrap items-end justify-center gap-3 sm:justify-between xl:right-7 xl:bottom-7 xl:left-7">
         <div className="hidden max-w-[21rem] animate-[gentle-float_6s_ease-in-out_infinite] rounded-2xl bg-[#f8f8f8] p-4 shadow-xl sm:block">
           <div className="mb-1.5 flex gap-0.5 text-[#db4927]" aria-hidden>
             {Array.from({ length: 5 }).map((_, i) => (

@@ -51,7 +51,7 @@ export function OfferPanel({
     <div className="flex min-h-dvh flex-col justify-center gap-6 px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Logo />
-        <div className="flex items-center gap-2 rounded-full bg-[#222] py-2 pr-4 pl-3.5 text-white shadow-sm">
+        <div className="hidden items-center gap-2 rounded-full bg-[#222] py-2 pr-4 pl-3.5 text-white shadow-sm lg:flex">
           <span className="h-2 w-2 animate-[soft-pulse_1.6s_ease-in-out_infinite] rounded-full bg-[#ffb199]" />
           <span className="text-[11px] font-bold tracking-[0.09em] text-white/80 uppercase">
             Offer ends in
@@ -69,7 +69,7 @@ export function OfferPanel({
         </span>
 
         <h1 className="font-[var(--font-nohemi)] text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[0.98] font-extrabold tracking-tight text-[#222] text-balance">
-          Limited-Time Offer:
+          Your Glow Up:
           <br />
           <span className="text-[#db4927]">Save {savePercent}</span>
         </h1>
