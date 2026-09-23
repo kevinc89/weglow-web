@@ -72,9 +72,9 @@ export function FullOffer({
           <Logo />
 
           <h1 className="font-[var(--font-nohemi)] text-[clamp(2.625rem,5.4vw,4.875rem)] leading-[0.95] font-extrabold tracking-tight text-[#222]">
-            Your whole year,
+            <span className="text-[#db4927]">50% Off</span>
             <br />
-            <span className="text-[#db4927]">half price.</span>
+            in Your First Year
           </h1>
 
           <p className="max-w-[42ch] text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.45] font-medium text-[#222] [text-shadow:0_1px_16px_rgba(255,255,255,0.95),0_1px_3px_rgba(255,255,255,0.9)]">
