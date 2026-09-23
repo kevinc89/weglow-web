@@ -32,7 +32,7 @@ export function formatCountdown(ms: number): string {
 }
 
 /** Session-scoped countdown for the summer-sale offer pages (/start-today,
- * /start-today-full, ...): the deadline is set once per browser session
+ * /start-today-full, /start-today-full-v2, ...): the deadline is set once per browser session
  * (persisted in sessionStorage, shared across those pages by design — one
  * consistent "reserved offer" window per visit rather than a fresh timer per
  * page) instead of resetting on every render or every page load. */
